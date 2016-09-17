@@ -85,19 +85,15 @@ app.post('/users', (req, res) => {
 
 app.post('/users/:id/purchase', (req, res) => {
 	if (!req.query.item) {
-		console.log('missing query')
 		res.status(400).send('Missing Query Param Item')
 	}
 
 	if (!req.params.id) {
-		console.log('missing id')
 		res.status(400).send('Missing Param Id')	
 	}
 
 	query(`SELECT id FROM users WHERE code=$1 LIMIT 1;`, [parseInt(req.params.id)]).then((results) => {
-		console.log('made it past 1', results)
-		let userId = results[0]
-		console.log(typeof userId)
+		let userId = results[0].id
 		return query(`INSERT INTO items_purchased (user_id, item_id) VALUES($1, $2);`, [userId, parseInt(req.query.item)])
 	}).then(() => {
 		console.log('made it past 2')
