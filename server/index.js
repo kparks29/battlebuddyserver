@@ -24,7 +24,7 @@ function query (sql, values = []) {
 	})
 }
 
-// app.use(express.static(`${__dirname}/views`));
+app.use(express.static(`${__dirname}/views`));
 
 app.get('/', (req, res) => {
 	res.status(200).sendFile(`${__dirname}/views/index.html`)
@@ -39,6 +39,6 @@ app.get('/users/:id', (req, res) => {
 })
 
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
 	console.log(`Server is listening on port ${process.env.PORT}`)
 })
