@@ -107,7 +107,7 @@ app.get('/users/:id/items', (req, res) => {
 		res.status(400).send('Missing Param Id')	
 	}
 
-	query(`SELECT i.id FROM items AS i
+	query(`SELECT DISTINCT i.id FROM items AS i
 		JOIN items_purchased AS ip
 		ON ip.item_id=i.id
 		JOIN users AS u
@@ -115,6 +115,25 @@ app.get('/users/:id/items', (req, res) => {
 		WHERE u.code=$1;`, [parseInt(req.params.id)]).then((results) => {
 		console.log(results)
 		res.status(200).send(results)
+	}).catch((error) => {
+		res.status(400).send(error)
+	})
+})
+
+app.post('/users/:id/loadout', (req, res) => {
+	if (!req.params.id) {
+		res.status(400).send('Missing Param Id')	
+	}
+
+	if (!req.body.weapon_item_id || !req.body.armor_item_id || !req.body.speed_item_id) {
+		res.status(400).send('Missing Items')	
+	}
+
+	query(`SELECT id FROM users WHERE code=$1 LIMIT 1;`, [parseInt(req.params.id)]).then((results) => {
+		let userId = results[0].id
+		return query(`INSERT INTO loadouts (user_id, weapon_item_id, armor_item_id, speed_item_id) VALUES($1, $2, $3, $4);`, [userId, req.body.weapon_item_id, req.body.armor_item_id, req.body.speed_item_id])
+	}).then(() => {
+		res.status(200).send('Success')
 	}).catch((error) => {
 		res.status(400).send(error)
 	})
