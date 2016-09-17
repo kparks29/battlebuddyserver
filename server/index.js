@@ -29,21 +29,24 @@ function getRandom () {
 	let random = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
 	return query(`SELECT COUNT(*) AS count FROM users WHERE code=$1`, [random]).then((results) => {
 		console.log(results)
+		return results
 	})
 }
 
 app.use(bodyParser.json())
-app.use(express.static(`${__dirname}/views`));
+// app.use(express.static(`${__dirname}/views`));
 
 app.get('/', (req, res) => {
-	getRandom()
-	res.status(200).sendFile(`${__dirname}/views/index.html`)
+	getRandom().then((code) => {
+		res.send(code)
+	})
+	// res.status(200).sendFile(`${__dirname}/views/index.html`)
 })
 
 app.get('/users/:id', (req, res) => {
 	let user;
 
-	query(`SELECT name, gender, coins, wins, loses, class FROM users WHERE code=$1 LIMIT 1;`, [req.params.id]).then((results) => {
+	query(`SELECT name, gender, coins, wins, loses, class, code FROM users WHERE code=$1 LIMIT 1;`, [req.params.id]).then((results) => {
 		console.log(results)
 		res.status(200).send(results)
 	}).catch((error) => {
@@ -59,7 +62,7 @@ app.post('/users', (req, res) => {
 
 	query()
 
-	query(`INSERT INTO users (name, gender, coins, wins, loses, class) VALUES ($1, $2, $3, $4, $5, $6)`, [req.body.name || null, req.body.gender || null, 1000, 0, 0, req.body.class]).then(() => {
+		return query(`INSERT INTO users (name, gender, coins, wins, loses, class, code) VALUES ($1, $2, $3, $4, $5, $6, $7)`, [req.body.name || null, req.body.gender || null, 1000, 0, 0, req.body.class], code).then(() => {
 		return query(`SELECT`)
 	}).then((results) => {
 		console.log(results)
