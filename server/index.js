@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/users/:id', (req, res) => {
-	query(`SELECT * FROM users;`).then((results) => {
+	query(`SELECT * FROM users WHERE code=$1;`, [req.params.id]).then((results) => {
 		res.status(200).send(results)
 	}).catch((error) => {
 		res.status(400).send(error)
