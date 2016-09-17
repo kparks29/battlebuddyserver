@@ -11,7 +11,7 @@ var pool = new pg.Pool({
 
 function Query (sql, values = []) {
 	return new Promise((resolve, reject) => {
-		pool.connect(process.env.DATABASE_URL, (err, client, done) => {
+		pool.connect((err, client, done) => {
 			if (err) {
 				console.log(err)
 				done()
