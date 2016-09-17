@@ -1,1 +1,1 @@
-require('./migrations.js)
+require('./migrations.js');
