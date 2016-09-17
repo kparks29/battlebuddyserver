@@ -47,8 +47,12 @@ app.get('/users/:id', (req, res) => {
 	let user;
 
 	query(`SELECT name, gender, coins, wins, loses, class, code FROM users WHERE code=$1 LIMIT 1;`, [req.params.id]).then((results) => {
-		console.log(results)
-		res.status(200).send(results)
+		user = results[0]
+		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id FROM loadouts WHERE user_id=$1;`, [user.id])
+	}).then((results) => {
+		user.loadouts = results
+		delete user.id
+		res.status(200).send(user)
 	}).catch((error) => {
 		res.status(400).send(error)
 	})
@@ -70,7 +74,7 @@ app.post('/users', (req, res) => {
 	}).then((results) => {
 		console.log(results)
 		user = results[0]
-	return query(`SELECT weapon_item_id, armor_item_id, speed_item_id FROM loadouts WHERE user_id=$1;`, [user.id])
+		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id FROM loadouts WHERE user_id=$1;`, [user.id])
 	}).then((results) => {
 		user.loadouts = results
 		delete user.id
