@@ -92,9 +92,9 @@ app.post('/users/:id/purchase', (req, res) => {
 		res.status(400).send('Missing Param Id')	
 	}
 
-	query(`SELECT id FROM users WHERE code=$1 LIMIT 1;`, [req.query.code]).then((results) => {
+	query(`SELECT id FROM users WHERE code=$1 LIMIT 1;`, [parseInt(req.params.id)]).then((results) => {
 		let userId = results[0]
-		return query(`INSERT INTO items_purchased (user_id, item_id) VALUES($1, $2);`, [userId, req.query.item])
+		return query(`INSERT INTO items_purchased (user_id, item_id) VALUES($1, $2);`, [userId, parseInt(req.query.item)])
 	}).then(() => {
 		res.status(200).send('Success')
 	}).catch((error) => {
