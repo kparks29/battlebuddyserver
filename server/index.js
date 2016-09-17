@@ -28,8 +28,11 @@ function query (sql, values = []) {
 function getRandom () {
 	let random = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
 	return query(`SELECT COUNT(*) AS count FROM users WHERE code=$1`, [random]).then((results) => {
-		console.log(results)
-		return results
+		if (results[0].count === 0) {
+			return random
+		} else {
+			return getRandom()
+		}
 	})
 }
 
@@ -55,17 +58,22 @@ app.get('/users/:id', (req, res) => {
 })
 
 app.post('/users', (req, res) => {
+	let code,
+		user;
+
 	if (!req.body.class) {
 		res.status(400).send('Missing Class')
 	}
 
-
-	query()
-
-		return query(`INSERT INTO users (name, gender, coins, wins, loses, class, code) VALUES ($1, $2, $3, $4, $5, $6, $7)`, [req.body.name || null, req.body.gender || null, 1000, 0, 0, req.body.class], code).then(() => {
-		return query(`SELECT`)
+	getRandom().then((results) => {
+		code = results
+		return query(`INSERT INTO users (name, gender, coins, wins, loses, class, code) VALUES ($1, $2, $3, $4, $5, $6, $7)`, [req.body.name || null, req.body.gender || null, 1000, 0, 0, req.body.class], code)
+	}).then(() => {
+		return query(`SELECT name, gender, coins, wins, loses, class, code FROM users WHERE code=$1 LIMIT 1;`, [code])
 	}).then((results) => {
 		console.log(results)
+		user = results
+		// return query(`SELECT weapon_item_id, armor_item_id, speed_item_id WHERE user_id;`)
 		res.status(200).send(results)
 	}).catch((error) => {
 		res.status(400).send(error)
