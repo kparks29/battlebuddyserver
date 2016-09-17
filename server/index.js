@@ -28,7 +28,7 @@ function query (sql, values = []) {
 function getRandom () {
 	let random = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
 	return query(`SELECT COUNT(*) AS count FROM users WHERE code=$1`, [random]).then((results) => {
-		if (results[0].count === 0) {
+		if (parseInt(results[0].count) === 0) {
 			return random
 		} else {
 			return getRandom()
@@ -73,7 +73,12 @@ app.post('/users', (req, res) => {
 	}).then((results) => {
 		console.log(results)
 		user = results
-		// return query(`SELECT weapon_item_id, armor_item_id, speed_item_id WHERE user_id;`)
+		// return query(`SELECT weapon_item_id, armor_item_id, speed_item_id FROM loadouts WHERE user_id=$1;`, [user.id])
+		// }).then((results) => {
+			// user.loadouts = results
+			// delete user.id
+		// })
+		// res.status(200).send(user)
 		res.status(200).send(results)
 	}).catch((error) => {
 		res.status(400).send(error)
