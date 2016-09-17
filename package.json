@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "battle buddy server",
   "scripts": {
-    "start": "babel-node index.js"
+    "start": "babel-node index.js",
+    "migrate": "babel-node ./server/migrations.js"
   },
   "babel": {
     "presets": [
