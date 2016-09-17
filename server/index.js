@@ -155,7 +155,8 @@ app.post('/users/:id/loadout', (req, res) => {
 })
 
 app.put('/users/:id', (req, res) => {
-	let promise;
+	let promise,
+		user;
 
 	if (req.query.query === 'coins') {
 		promise = query(`UPDATE users SET coins=$1;`, [req.body.coins])
