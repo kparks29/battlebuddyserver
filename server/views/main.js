@@ -59,7 +59,7 @@
 		}
 
 		function onBattleSetSelected (index) {
-			MainService.updateLoadout(index).then(function (user) {
+			MainService.updateLoadout(self.user.code, index).then(function (user) {
 				self.user = user;
 				self.state = 'code';
 			}).catch(function (error) {
@@ -89,7 +89,21 @@
 			}
 		}
 
-		function onUpItemClicked () {}
+		function onUpItemClicked () {
+			if (self.currentItemIndex - 1 < 0) {
+				self.currentItemIndex = self.items[self.state].length - 1
+			} else {
+				self.currentItemIndex--;
+			}
+		}
+
+		function onDownItemClicked () {
+			if (self.currentItemIndex + 1 === self.items[self.state].length) {
+				self.currentItemIndex = 0
+			} else {
+				self.currentItemIndex++;
+			}
+		}
 
 		self.state = 'start';
 		self.onEnterCodeClicked = onEnterCodeClicked;
