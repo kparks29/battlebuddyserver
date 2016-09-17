@@ -35,6 +35,41 @@
       </p>
     </section>
 
+    <section id="welcome" ng-if="ctrl.state === 'welcome'">
+      <h1>INFO</h1>
+      <p>
+        <label for="name">Name</label>
+        <input type="text" id="name" ng-model="ctrl.newUser.name"></div>
+      </p>
+      <p>
+        <label>Gender</label>
+        <select ng-model="ctrl.newUser.gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </p>
+      <p>
+        <a class="button" ng-click="ctrl.onInfoClicked()"></a>
+      </p>
+    </section>
+
+
+
+    <section id="character" ng-if="ctrl.state === 'character'">
+      <h1>CHARACTER CLASS</h1>
+      <p>Suit your place style</p>
+      <p> {{ ctrl.classes[ctrl.currentClassName].name }}: {{ ctrl.classes[ctrl.currentClassName].subtitle }}</p>
+      <div class="row">
+        <div ng-click="ctrl.onLeftClicked()"><i>left</i></div>
+        <div><img src=""></div>
+        <div ng-click="ctrl.onRightClicked()"><i>right</i></div>
+      </div>
+      <p>
+        <a class="button" ng-click="ctrl.onClassChosenClicked()">Choose</a>
+      </p>
+      <p>*You cannot change later!</p>
+    </section>
+
 
 
     <section id="dashboard" ng-if="ctrl.state === 'dashboard'">
@@ -95,14 +130,17 @@
         <div class="left">
           <i ng-click="ctrl.onUpItemClicked()">Up</i>
           <div> {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].name }} </div>
-          <div> {{ ctrl.items }} </div>
-          <div> {{ ctrl.state }} </div>
-          <div> {{ ctrl.currentItemIndex }} </div>
           <i ng-click="ctrl.onDownItemClicked()">Down</i>
           <div class="description">{{ ctrl.items[ctrl.state][ctrl.currentItemIndex].description }} </div>
         </div>
         <div class="right">
-
+          <p><img src=""></p>
+          <p><a class="button" ng-click="ctrl.onBuyClicked()">BUY</a></p>
+          <p>
+            <!-- <ul>
+              <li></li>
+            </ul> -->
+          </p>
         </div>
       </div>
     </section>
@@ -115,9 +153,6 @@
         <div class="left">
           <i ng-click="ctrl.onUpItemClicked()">Up</i>
           <div> {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].name }} </div>
-          <div> {{ ctrl.items }} </div>
-          <div> {{ ctrl.state }} </div>
-          <div> {{ ctrl.currentItemIndex }} </div>
           <i ng-click="ctrl.onDownItemClicked()">Down</i>
           <div class="description">{{ ctrl.items[ctrl.state][ctrl.currentItemIndex].description }} </div>
         </div>
@@ -136,9 +171,6 @@
         <div class="left">
           <i ng-click="ctrl.onUpItemClicked()">Up</i>
           <div> {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].name }} </div>
-          <div> {{ ctrl.items }} </div>
-          <div> {{ ctrl.state }} </div>
-          <div> {{ ctrl.currentItemIndex }} </div>
           <i ng-click="ctrl.onDownItemClicked()">Down</i>
           <div class="description">{{ ctrl.items[ctrl.state][ctrl.currentItemIndex].description }} </div>
         </div>
@@ -158,6 +190,7 @@
 
     <section id="code" ng-if="ctrl.state === 'code'">
       <h1>CODE</h1>
+      <div>{{ ctrl.user.code }}</div>
     </section>
 
   </body>

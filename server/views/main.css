@@ -121,3 +121,8 @@ h1 {
 
 #store .button.inactive {
   background-color: lightgray; }
+
+#code div {
+  font-size: 150px;
+  padding: 10px;
+  border: 2px solid black; }

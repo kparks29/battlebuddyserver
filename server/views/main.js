@@ -105,6 +105,50 @@
 			}
 		}
 
+		function onInfoClicked () {
+			if (self.newUser.name && self.newUser.gender) {
+				self.state = 'character';
+			}
+		}
+
+		function onLeftClicked () {
+			if (self.currentClassIndex - 1 < 0) {
+				self.currentClassIndex = self.classes.length - 1;
+			} else {
+				self.currentClassIndex--;
+			}
+		}
+
+		function onRightClicked () {
+			if (self.currentClassIndex + 1 === self.classes.length) {
+				self.currentClassIndex = 0;
+			} else {
+				self.currentClassIndex++;
+			}
+		}
+
+		function onClassChosenClicked () {
+			var type = self.classes[self.currentClassIndex];
+			self.newUser.type = type;
+			MainService.createUser(self.newUser).then(function (user) {
+				self.user = user;
+				self.state = 'weapon'
+			}).catch(function (error) {
+				console.log(error)
+				self.user = {
+					code: 123,
+					name: 'Ken',
+					coins: 1000,
+					loadouts: [
+						{name: 'Speedster'}
+					],
+					equiped_loadout_index: 0
+				}
+				self.state = 'weapon'
+			})
+		}
+
+
 		self.state = 'start';
 		self.onEnterCodeClicked = onEnterCodeClicked;
 		self.onCreateClicked = onCreateClicked;
@@ -115,7 +159,27 @@
 		self.onSummaryClicked = onSummaryClicked;
 		self.onUpItemClicked = onUpItemClicked;
 		self.onDownItemClicked = onDownItemClicked;
+		self.onInfoClicked = onInfoClicked;
+		self.onLeftClicked = onLeftClicked;
+		self.onRightClicked = onRightClicked;
+		self.onClassChosenClicked = onClassChosenClicked;
 		self.items = {};
+		self.newUser = {};
+		self.classes = [
+			{ 
+				name: 'attack',
+				subtitle: 'Stronger Attacks'
+			},
+			{ 
+				name: 'defense',
+				subtitle: 'Stronger Defense'
+			},
+			{ 
+				name: 'speed',
+				subtitle: 'Faster Movement'
+			}
+		]
+		self.currentClassIndex = 0;
 
 		MainService.getItems('weapon').then(function (items) {
 			self.items['weapon'] = items;
