@@ -67,23 +67,37 @@ app.post('/users', (req, res) => {
 	}
 
 	getRandom().then((results) => {
-		console.log(results)
 		code = results
 	return query(`INSERT INTO users (name, gender, coins, wins, loses, class, code) VALUES ($1, $2, $3, $4, $5, $6, $7);`, [req.body.name || null, req.body.gender || null, 1000, 0, 0, req.body.class, code])
 	}).then((results) => {
-		console.log(results)
 		return query(`SELECT id, name, gender, coins, wins, loses, class, code FROM users WHERE code=$1 LIMIT 1;`, [code])
 	}).then((results) => {
-		console.log(results)
 		user = results[0]
 		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id FROM loadouts WHERE user_id=$1;`, [user.id])
 	}).then((results) => {
-		console.log(results)
 		user.loadouts = results
 		delete user.id
 		res.status(200).send(user)
 	}).catch((error) => {
-		console.log(err)
+		res.status(400).send(error)
+	})
+})
+
+app.post('/users/:id/purchase', (req, res) => {
+	if (!req.query.item) {
+		res.status(400).send('Missing Query Param Item')
+	}
+
+	if (!req.params.id) {
+		res.status(400).send('Missing Param Id')	
+	}
+
+	query(`SELECT id FROM users WHERE code=$1 LIMIT 1;`, [req.query.code]).then((results) => {
+		let userId = results[0]
+		return query(`INSERT INTO items_purchased (user_id, item_id) VALUES($1, $2);`, [userId, req.query.item])
+	}).then(() => {
+		res.status(200).send('Success')
+	}).catch((error) => {
 		res.status(400).send(error)
 	})
 })
