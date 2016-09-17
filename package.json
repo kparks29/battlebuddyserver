@@ -4,7 +4,7 @@
   "description": "battle buddy server",
   "scripts": {
     "start": "babel-node index.js",
-    "migrate": "babel-node ./server/migrate.js"
+    "migrate": "babel-node ./server/migrations.js"
   },
   "babel": {
     "presets": [

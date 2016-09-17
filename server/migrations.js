@@ -1,14 +1,17 @@
 import pg from 'pg'
 import Promise from 'promise'
 
-
-process.env.PORT = process.env.PORT || 5000
-process.env.DATABASE_URL = process.env.DATABASE_URL || 'postgres://ifnzrvwijvvxds:7abTa8XKGz9LgMl_aOWPSBdta7@ec2-54-225-81-90.compute-1.amazonaws.com:5432/d33ga0ododnh4n'
+var pool = new pg.Pool({
+	host: process.env.PGHOST,
+	user: process.env.PGUSER,
+	password: process.env.PGPASSWORD,
+	port: process.env.PGPORT,
+	database: process.env.PGDATABASE
+})
 
 function Query (sql, values = []) {
-	console.log('query')
 	return new Promise((resolve, reject) => {
-		pg.connect(process.env.DATABASE_URL, (err, client, done) => {
+		pool.connect(process.env.DATABASE_URL, (err, client, done) => {
 			if (err) {
 				console.log(err)
 				done()
