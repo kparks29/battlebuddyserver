@@ -42,6 +42,8 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => {
 	getRandom().then((code) => {
 		res.send(code)
+	}).catch((err) => {
+		res.send(err)
 	})
 	// res.status(200).sendFile(`${__dirname}/views/index.html`)
 })
