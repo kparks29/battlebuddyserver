@@ -1,29 +1,24 @@
-<!doctype html>
-<html lang="en-us">
+<!DOCTYPE html>
+<html ng-app="battlebuddyapp">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Network Framework</title>
-    <link rel="stylesheet" href="TemplateData/style.css">
-    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
-    <script src="TemplateData/UnityProgress.js"></script>
+    <title>Battle Buddy</title>
+    <script type="text/javascript" src="angular.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
   </head>
-  <body class="template">
-    <div class="template-wrap clear">
-      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="960px"></canvas>
-    </div>
-    <script type='text/javascript'>
-  var Module = {
-    TOTAL_MEMORY: 268435456,
-    errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
-    compatibilitycheck: null,
-    dataUrl: "Release/WebGLBuild.data",
-    codeUrl: "Release/WebGLBuild.js",
-    memUrl: "Release/WebGLBuild.mem",
-    
-  };
-</script>
-<script src="Release/UnityLoader.js"></script>
-
+  <body ng-controller="MainCtrl as ctrl">
+    <section id="start" ng-if="ctrl.state === 'start'">
+      <p class="logo">
+        <img src="" />
+      </p>
+      <p>
+        <label for="code">Enter Code:</label><br>
+        <input type="number" id="code" ng-model="ctrl.code" /><br>
+        <a class="button" ng-click="ctrl.onEnterCodeClicked()">Submit</a>
+      </p>
+      <p>
+        <a class="button" ng-click="ctrl.onCreateClicked()">Create Buddy</a>
+      </p>
+    </section>
   </body>
 </html>
