@@ -176,6 +176,7 @@ app.put('/users/:id', (req, res) => {
 		delete user.id
 		res.status(200).send(user)
 	}).catch((error) => {
+		console.log('error: ', error)
 		res.status(400).send(error)
 	})
 })
