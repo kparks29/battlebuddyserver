@@ -69,7 +69,7 @@ app.post('/users', (req, res) => {
 	getRandom().then((results) => {
 		console.log(results)
 		code = results
-	return query(`INSERT INTO users (name, gender, coins, wins, loses, class, code) VALUES ($1, $2, $3, $4, $5, $6, $7);`, [req.body.name || null, req.body.gender || null, 1000, 0, 0, req.body.class], code)
+	return query(`INSERT INTO users (name, gender, coins, wins, loses, class, code) VALUES ($1, $2, $3, $4, $5, $6, $7);`, [req.body.name || null, req.body.gender || null, 1000, 0, 0, req.body.class, code])
 	}).then((results) => {
 		console.log(results)
 		return query(`SELECT id, name, gender, coins, wins, loses, class, code FROM users WHERE code=$1 LIMIT 1;`, [code])
