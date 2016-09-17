@@ -37,15 +37,10 @@ function getRandom () {
 }
 
 app.use(bodyParser.json())
-// app.use(express.static(`${__dirname}/views`));
+app.use(express.static(`${__dirname}/views`));
 
 app.get('/', (req, res) => {
-	getRandom().then((code) => {
-		res.status(200).send({ code: code })
-	}).catch((err) => {
-		res.status(400).send(err)
-	})
-	// res.status(200).sendFile(`${__dirname}/views/index.html`)
+	res.status(200).sendFile(`${__dirname}/views/index.html`)
 })
 
 app.get('/users/:id', (req, res) => {
@@ -69,19 +64,17 @@ app.post('/users', (req, res) => {
 
 	getRandom().then((results) => {
 		code = results
-		return query(`INSERT INTO users (name, gender, coins, wins, loses, class, code) VALUES ($1, $2, $3, $4, $5, $6, $7)`, [req.body.name || null, req.body.gender || null, 1000, 0, 0, req.body.class], code)
+	return query(`INSERT INTO users (name, gender, coins, wins, loses, class, code) VALUES ($1, $2, $3, $4, $5, $6, $7)`, [req.body.name || null, req.body.gender || null, 1000, 0, 0, req.body.class], code)
 	}).then(() => {
 		return query(`SELECT name, gender, coins, wins, loses, class, code FROM users WHERE code=$1 LIMIT 1;`, [code])
 	}).then((results) => {
 		console.log(results)
-		user = results
-		// return query(`SELECT weapon_item_id, armor_item_id, speed_item_id FROM loadouts WHERE user_id=$1;`, [user.id])
-		// }).then((results) => {
-			// user.loadouts = results
-			// delete user.id
-		// })
-		// res.status(200).send(user)
-		res.status(200).send(results)
+		user = results[0]
+	return query(`SELECT weapon_item_id, armor_item_id, speed_item_id FROM loadouts WHERE user_id=$1;`, [user.id])
+	}).then((results) => {
+		user.loadouts = results
+		delete user.id
+		res.status(200).send(user)
 	}).catch((error) => {
 		res.status(400).send(error)
 	})
