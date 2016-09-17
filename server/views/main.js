@@ -212,6 +212,12 @@
 			});
 		}
 
+		function createUser (user) {
+			return $http.post(baseUrl + '/users', user).then(function (response) {
+				return response.data;
+			});
+		}
+
 		return {
 			getUser: getUser,
 			updateLoadout: updateLoadout,
