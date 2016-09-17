@@ -165,19 +165,15 @@ app.put('/users/:id', (req, res) => {
 	}
 
 	promise.then(() => {
-		console.log('main working')
 		return query(`SELECT id, name, gender, coins, wins, loses, type, code, equiped_loadout_index FROM users WHERE code=$1 LIMIT 1;`, [parseInt(req.params.id)])
 	}).then((results) => {
-		console.log('user selected', results)
 		user = results[0]
 		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [user.id])
 	}).then((results) => {
-		console.log('loadouts selected')
 		user.loadouts = results
 		delete user.id
 		res.status(200).send(user)
 	}).catch((error) => {
-		console.log('error: ', error)
 		res.status(400).send(error)
 	})
 })
