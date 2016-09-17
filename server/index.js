@@ -11,19 +11,8 @@ var app = express()
 
 // app.use(express.static(`${__dirname}/views`));
 
-app.get('/', (req, res) => {
-	query(`CREATE TABLE IF NOT EXISTS users (
-		id SERIAL,
-		uuid UUID,
-		name TEXT,
-		gender TEXT,
-		coins INT,
-		wins INT,
-		loses INT,
-		class TEXT
-	);`).then(() => {
-		return query(`SELECT * FROM users;`)
-	}).then((results) => {
+app.get('/users', (req, res) => {
+	query(`SELECT * FROM users;`).then((results) => {
 		res.status(200).send(results)
 	}).catch((error) => {
 		res.status(400).send(error)
