@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
 app.get('/users/:id', (req, res) => {
 	let user;
 
-	query(`SELECT id, name, gender, coins, wins, loses, type, code FROM users WHERE code=$1 LIMIT 1;`, [req.params.id]).then((results) => {
+	query(`SELECT id, name, gender, coins, wins, loses, type, code FROM users WHERE code=$1 LIMIT 1;`, [parseInt(req.params.id)]).then((results) => {
 		user = results[0]
 		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id FROM loadouts WHERE user_id=$1;`, [user.id])
 	}).then((results) => {
