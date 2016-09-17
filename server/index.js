@@ -62,6 +62,8 @@ app.post('/users', (req, res) => {
 	let code,
 		user;
 
+	console.log(req.body, req.headers)
+
 	if (!req.body.type) {
 		res.status(400).send('Missing type')
 	}
