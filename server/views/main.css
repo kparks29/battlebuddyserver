@@ -15,6 +15,16 @@ body {
     width: calc(100% - 40px);
     padding: 20px; }
 
+.button {
+  width: 80%;
+  font-size: 48px;
+  line-height: 48px;
+  padding: 20px 15%;
+  border: 2px solid lightgreen;
+  border-radius: 15px;
+  background-color: green;
+  color: white; }
+
 #start .logo {
   height: 33%;
   width: 80%;
@@ -42,12 +52,75 @@ body {
   margin: 20px 0 50px;
   text-align: center; }
 
-#start .button {
+#welcome .logo {
+  height: 33%;
   width: 80%;
-  font-size: 48px;
-  line-height: 48px;
-  padding: 20px 15%;
-  border: 2px solid lightgreen;
-  border-radius: 15px;
-  background-color: green;
-  color: white; }
+  margin: 40px auto 20px; }
+  #welcome .logo img {
+    height: 100%;
+    width: 100%;
+    border: 4px solid black; }
+
+#welcome p {
+  text-align: center; }
+  #welcome p:nth-child(2) {
+    margin: 30% 0 10%;
+    font-size: 68px;
+    line-height: 108px; }
+
+#dashboard h1 {
+  font-size: 90px;
+  text-align: center; }
+
+#dashboard h2 {
+  margin-top: 15%;
+  font-size: 70px;
+  text-align: center; }
+
+#dashboard .row {
+  display: flex;
+  width: 100%;
+  font-size: 50px; }
+  #dashboard .row div {
+    flex: 1;
+    text-align: center; }
+    #dashboard .row div.battleset {
+      text-align: right; }
+      #dashboard .row div.battleset span {
+        border: 1px solid black;
+        padding: 10px;
+        border-radius: 15px; }
+
+#dashboard .battlesets .row {
+  height: 100px;
+  line-height: 100px; }
+
+#dashboard p {
+  margin-top: 25%;
+  text-align: center; }
+
+#store h1 {
+  font-size: 90px;
+  text-align: center; }
+
+#store .row {
+  display: flex;
+  width: 100%;
+  font-size: 50px;
+  height: 100px;
+  line-height: 100px; }
+  #store .row div {
+    flex: 1;
+    text-align: center; }
+
+#store p {
+  margin-top: 25%;
+  text-align: center; }
+  #store p a {
+    padding: 20px 40px;
+    border: 2px solid black;
+    border-radius: 15px;
+    font-size: 50px; }
+
+#store .button.inactive {
+  background-color: lightgray; }

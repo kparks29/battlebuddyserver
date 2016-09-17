@@ -18,6 +18,18 @@ body {
 	}
 }
 
+
+.button {
+	width: 80%;
+	font-size: 48px;
+	line-height: 48px;
+	padding: 20px 15%;
+	border: 2px solid lightgreen;
+	border-radius: 15px;
+	background-color: green;
+	color: white;
+}
+
 #start {
 	.logo {
 		height: 33%;
@@ -48,14 +60,109 @@ body {
 		margin: 20px 0 50px;
 		text-align: center;
 	}
-	.button {
+}
+
+
+
+
+
+
+#welcome {
+	.logo {
+		height: 33%;
 		width: 80%;
-		font-size: 48px;
-		line-height: 48px;
-		padding: 20px 15%;
-		border: 2px solid lightgreen;
-		border-radius: 15px;
-		background-color: green;
-		color: white;
+		margin: 40px auto 20px;
+		img {
+			height: 100%;
+			width: 100%;
+			border: 4px solid black;
+		}
+	}
+	p {
+		text-align: center;
+		&:nth-child(2) {
+			margin: 30% 0 10%;
+			font-size: 68px;
+			line-height: 108px;
+		}
+	}
+}
+
+
+
+
+#dashboard {
+	h1 {
+		font-size: 90px;
+		text-align: center;
+	}
+	h2 {
+		margin-top: 15%;
+		font-size: 70px;
+		text-align: center;
+	}
+	.row {
+		display: flex;
+		width: 100%;
+		font-size: 50px;
+		div {
+			flex: 1;
+			text-align: center;
+			&.battleset {
+				text-align: right;
+				span {
+					border: 1px solid black;
+					padding: 10px;
+					border-radius: 15px;
+				}
+			}
+		}
+	}
+	.battlesets {
+		.row {
+			height: 100px;
+			line-height: 100px;
+		}
+	}
+	p {
+	    margin-top: 25%;
+	    text-align: center;
+	}
+}
+
+
+
+
+#store {
+	h1 {
+		font-size: 90px;
+		text-align: center;
+	}
+
+	.row {
+		display: flex;
+		width: 100%;
+		font-size: 50px;
+		height: 100px;
+		line-height: 100px;
+		div {
+			flex: 1;
+			text-align: center;
+		}
+	}
+	p {
+	    margin-top: 25%;
+	    text-align: center;
+	    a {
+	    	padding: 20px 40px;
+	    	border: 2px solid black;
+	    	border-radius: 15px;
+	    	font-size: 50px;
+	    }
+	}
+	.button {
+		&.inactive {
+			background-color: lightgray;
+		}
 	}
 }
