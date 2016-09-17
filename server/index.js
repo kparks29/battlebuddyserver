@@ -110,7 +110,7 @@ app.get('/items', (req, res) => {
 		res.status(400).send('Missing Query Param Category')
 	}
 
-	query(`SELECT * FROM items WHERE category=$1;`, [parseInt(req.query.category)]).then((results) => {
+	query(`SELECT * FROM items WHERE category=$1;`, [req.query.category]).then((results) => {
 		res.status(200).send(results)
 	}).catch((error) => {
 		res.status(400).send(error)
