@@ -28,7 +28,6 @@ function query (sql, values = []) {
 function getRandom () {
 	let random = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
 	return query(`SELECT COUNT(*) AS count FROM users WHERE code=$1`, [random]).then((results) => {
-		console.log(parseInt(results[0].count), random)
 		if (parseInt(results[0].count) === 0) {
 			return random
 		} else {
@@ -42,9 +41,9 @@ app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
 	getRandom().then((code) => {
-		res.status(200).send(code)
+		res.status(200).send({ code: code })
 	}).catch((err) => {
-		res.status(200).send(err)
+		res.status(400).send(err)
 	})
 	// res.status(200).sendFile(`${__dirname}/views/index.html`)
 })
