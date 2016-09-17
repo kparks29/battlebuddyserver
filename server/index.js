@@ -52,7 +52,7 @@ function query (sql, values = []) {
 					reject(err)
 				}
 				else {
-					resolve(result)
+					resolve(result.rows)
 				}
 				done()
 			})
