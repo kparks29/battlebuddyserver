@@ -15,9 +15,14 @@ body {
 		height: calc(100% - 40px);
 		width: calc(100% - 40px);
 		padding: 20px;
+		font-size: 50px;
 	}
 }
 
+h1 {
+	font-size: 90px;
+	text-align: center;
+}
 
 .button {
 	width: 80%;
@@ -28,6 +33,15 @@ body {
 	border-radius: 15px;
 	background-color: green;
 	color: white;
+}
+
+.row {
+	display: flex;
+	width: 100%;
+	div {
+		flex: 1;
+		text-align: center;
+	}
 }
 
 #start {
@@ -92,30 +106,17 @@ body {
 
 
 #dashboard {
-	h1 {
-		font-size: 90px;
-		text-align: center;
-	}
 	h2 {
 		margin-top: 15%;
 		font-size: 70px;
 		text-align: center;
 	}
-	.row {
-		display: flex;
-		width: 100%;
-		font-size: 50px;
-		div {
-			flex: 1;
-			text-align: center;
-			&.battleset {
-				text-align: right;
-				span {
-					border: 1px solid black;
-					padding: 10px;
-					border-radius: 15px;
-				}
-			}
+	.battleset {
+		text-align: right;
+		span {
+			border: 1px solid black;
+			padding: 10px;
+			border-radius: 15px;
 		}
 	}
 	.battlesets {
@@ -134,10 +135,6 @@ body {
 
 
 #store {
-	h1 {
-		font-size: 90px;
-		text-align: center;
-	}
 
 	.row {
 		display: flex;

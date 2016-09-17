@@ -96,7 +96,7 @@
           <i ng-click="ctrl.onUpItemClicked()">Up</i>
           <div> {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].name }} </div>
           <i ng-click="ctrl.onDownItemClicked()">Down</i>
-          <div class="description">{{ ctrl.items[ctrl.state][ctrl.currentItemIndex] }} </div>
+          <div class="description">{{ ctrl.items[ctrl.state][ctrl.currentItemIndex].description }} </div>
         </div>
         <div class="right">
 
@@ -112,8 +112,11 @@
         <div class="left">
           <i ng-click="ctrl.onUpItemClicked()">Up</i>
           <div> {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].name }} </div>
+          <div> {{ ctrl.items }} </div>
+          <div> {{ ctrl.state }} </div>
+          <div> {{ ctrl.currentItemIndex }} </div>
           <i ng-click="ctrl.onDownItemClicked()">Down</i>
-          <div class="description">{{ ctrl.items[ctrl.state][ctrl.currentItemIndex] }} </div>
+          <div class="description">{{ ctrl.items[ctrl.state][ctrl.currentItemIndex].description }} </div>
         </div>
         <div class="right">
 
@@ -131,7 +134,7 @@
           <i ng-click="ctrl.onUpItemClicked()">Up</i>
           <div> {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].name }} </div>
           <i ng-click="ctrl.onDownItemClicked()">Down</i>
-          <div class="description">{{ ctrl.items[ctrl.state][ctrl.currentItemIndex] }} </div>
+          <div class="description">{{ ctrl.items[ctrl.state][ctrl.currentItemIndex].description }} </div>
         </div>
         <div class="right">
 

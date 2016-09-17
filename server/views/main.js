@@ -118,13 +118,13 @@
 		self.items = {};
 
 		MainService.getItems('weapon').then(function (items) {
-			self.items.weapon = items;
+			self.items['weapon'] = items;
 			return MainService.getItems('armor')
 		}).then(function (items) {
-			self.items.armor = items;
+			self.items['armor'] = items;
 			return MainService.getItems('speed')
 		}).then(function (items) {
-			self.items.speed = items;
+			self.items['speed'] = items;
 		})
 	}
 
