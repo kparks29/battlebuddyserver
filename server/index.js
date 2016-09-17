@@ -22,15 +22,11 @@ app.get('/', (req, res) => {
 		loses INT,
 		class TEXT
 	);`).then(() => {
-		return query(`INSERT INTO users (name, class) VALUES($1, $2);`, ['speedy', 'speed'])
-	}).then(() => {
 		return query(`SELECT * FROM users;`)
 	}).then((results) => {
-		console.log(results)
-		res.send(results)
+		res.status(200).send(results)
 	}).catch((error) => {
-		console.log(error)
-		res.send(error)
+		res.status(400).send(error)
 	})
 })
 
