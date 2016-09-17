@@ -26,9 +26,9 @@ function query (sql, values = []) {
 
 // app.use(express.static(`${__dirname}/views`));
 
-app.get('/users', (req, res) => {
+app.get('/users/:id', (req, res) => {
 	query(`SELECT * FROM users;`).then((results) => {
-		res.status(200).send(results)
+		res.status(200).sendFile(`${__dirname}/views/index.html`)
 	}).catch((error) => {
 		res.status(400).send(error)
 	})
