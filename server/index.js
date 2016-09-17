@@ -95,8 +95,9 @@ app.post('/users/:id/purchase', (req, res) => {
 	}
 
 	query(`SELECT id FROM users WHERE code=$1 LIMIT 1;`, [parseInt(req.params.id)]).then((results) => {
-		console.log('made it past 1')
+		console.log('made it past 1', results)
 		let userId = results[0]
+		console.log(typeof userId)
 		return query(`INSERT INTO items_purchased (user_id, item_id) VALUES($1, $2);`, [userId, parseInt(req.query.item)])
 	}).then(() => {
 		console.log('made it past 2')
