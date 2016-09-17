@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
 app.get('/users/:id', (req, res) => {
 	let user;
 
-	query(`SELECT name, gender, coins, wins, loses, class, code FROM users WHERE code=$1 LIMIT 1;`, [req.params.id]).then((results) => {
+	query(`SELECT id, name, gender, coins, wins, loses, class, code FROM users WHERE code=$1 LIMIT 1;`, [req.params.id]).then((results) => {
 		user = results[0]
 		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id FROM loadouts WHERE user_id=$1;`, [user.id])
 	}).then((results) => {
@@ -70,7 +70,7 @@ app.post('/users', (req, res) => {
 		code = results
 	return query(`INSERT INTO users (name, gender, coins, wins, loses, class, code) VALUES ($1, $2, $3, $4, $5, $6, $7)`, [req.body.name || null, req.body.gender || null, 1000, 0, 0, req.body.class], code)
 	}).then(() => {
-		return query(`SELECT name, gender, coins, wins, loses, class, code FROM users WHERE code=$1 LIMIT 1;`, [code])
+		return query(`SELECT id, name, gender, coins, wins, loses, class, code FROM users WHERE code=$1 LIMIT 1;`, [code])
 	}).then((results) => {
 		console.log(results)
 		user = results[0]
