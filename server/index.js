@@ -96,8 +96,25 @@ app.post('/users/:id/purchase', (req, res) => {
 		let userId = results[0].id
 		return query(`INSERT INTO items_purchased (user_id, item_id) VALUES($1, $2);`, [userId, parseInt(req.query.item)])
 	}).then(() => {
-		console.log('made it past 2')
 		res.status(200).send('Success')
+	}).catch((error) => {
+		res.status(400).send(error)
+	})
+})
+
+app.get('/users/:id/items', (req, res) => {
+	if (!req.params.id) {
+		res.status(400).send('Missing Param Id')	
+	}
+
+	query(`SELECT i.id FROM items AS i
+		JOIN items_purchased AS ip
+		ON ip.item_id=i.id
+		JOIN users AS u
+		ON ip.user_id=u.id
+		WHERE u.code=$1;`, [parseInt(req.params.id)]).then((results) => {
+		console.log(results)
+		res.status(200).send(results)
 	}).catch((error) => {
 		res.status(400).send(error)
 	})
