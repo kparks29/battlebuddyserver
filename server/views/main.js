@@ -173,7 +173,7 @@
 		function onSaveSet () {
 			var loadout = {
 				weapon_item_id: self.weapon.id,
-				armor_item_id: self.armor.id
+				armor_item_id: self.armor.id,
 				speed_item_id: self.speed.id
 			}
 			MainService.updateLoadout(self.user.code, self.user.loadouts[self.currentLoadoutIndex].id, loadout).then(function () {
