@@ -141,7 +141,7 @@
           <div class="description top-space">Description: <br><span>{{ ctrl.items[ctrl.state][ctrl.currentItemIndex].description }}</span></div>
         </div>
         <div>
-          <p><img ng-src="{{ ctrl.itemImages[ctrl.state][ctrl.currentItemIndex] }}"></p>
+          <p><img ng-src="{{ ctrl.itemImages[ctrl.state][ctrl.items[ctrl.state][ctrl.currentItemIndex].name] }}"></p>
           <p>Cost: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].cost }}</p>
           <p ng-if="!ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onBuyClicked()">BUY</a></p>
           <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIP</a></p>
@@ -169,7 +169,7 @@
           <div class="description top-space">Description: <br><span>{{ ctrl.items[ctrl.state][ctrl.currentItemIndex].description }}</span></div>
         </div>
         <div class="right">
-          <p><img ng-src="{{ ctrl.itemImages[ctrl.state][ctrl.currentItemIndex] }}"></p>
+          <p><img ng-src="{{ ctrl.itemImages[ctrl.state][ctrl.items[ctrl.state][ctrl.currentItemIndex].name] }}"></p>
           <p>Cost: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].cost }}</p>
           <p ng-if="!ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onBuyClicked()">BUY</a></p>
           <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIP</a></p>
@@ -196,7 +196,7 @@
           <div class="description top-space">Description: <br><span>{{ ctrl.items[ctrl.state][ctrl.currentItemIndex].description }}</span></div>
         </div>
         <div class="right">
-          <p><img ng-src="{{ ctrl.itemImages[ctrl.state][ctrl.currentItemIndex] }}"></p>
+          <p><img ng-src="{{ ctrl.itemImages[ctrl.state][ctrl.items[ctrl.state][ctrl.currentItemIndex].name] }}"></p>
           <p>Cost: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].cost }}</p>
           <p ng-if="!ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onBuyClicked()">BUY</a></p>
           <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIP</a></p>

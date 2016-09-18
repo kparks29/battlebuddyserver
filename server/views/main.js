@@ -214,55 +214,37 @@
 			{ 
 				name: 'attack',
 				subtitle: 'Stronger Attacks',
-				image: 'assets/robot_screenshot.png'
+				image: 'assets/robot_red.png'
 			},
 			{ 
 				name: 'defense',
 				subtitle: 'Stronger Defense',
-				image: 'assets/robot_screenshot.png'
+				image: 'assets/robot_blue.png'
 			},
 			{ 
 				name: 'speed',
 				subtitle: 'Faster Movement',
-				image: 'assets/robot_screenshot.png'
+				image: 'assets/robot_yellow.png'
 			}
 		]
 		self.currentClassIndex = 0;
 		self.currentItemIndex = 0;
 		self.itemImages = {
-			weapon: [
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png'
-			],
-			armor: [
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png'
-			],
-			speed: [
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png',
-				'assets/robot_screenshot.png'
-			]
+			weapon: {
+				'Laser': 'assets/weapon_laser.png',
+				'Rocket': 'assets/weapon_rocket_launcher.png',
+				'Shotgun': 'assets/weapon_shotgun.png'
+			},
+			armor: {
+				'Health Belt': 'assets/armor_healing_belt.png',
+				'Reflective Helmet': 'assets/armor_reflective_helmet.png',
+				'Shield Vest': 'assets/armor_shield_rollcage.png'
+			},
+			speed: {
+				'Run': 'assets/speed_run.png',
+				'Regen': 'assets/speed_heal.png',
+				'Weapon Speed': 'assets/speed_weapon_speed.png'
+			}
 		}
 
 		MainService.getItems('weapon').then(function (items) {
