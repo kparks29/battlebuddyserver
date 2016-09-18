@@ -68,7 +68,7 @@
 		}
 
 		function onBattleSetSelected (index) {
-			MainService.updateLoadout(self.user.code, index).then(function (user) {
+			MainService.updateCurrentLoadout(self.user.code, index).then(function (user) {
 				self.user = user;
 				self.state = 'code';
 			}).catch(function (error) {
@@ -171,7 +171,20 @@
 		}
 
 		function onSaveSet () {
-
+			var loadout = {
+				weapon_item_id: self.weapon.id,
+				armor_item_id: self.armor.id
+				speed_item_id: self.speed.id
+			}
+			MainService.updateLoadout(self.user.code, self.user.loadouts[self.currentLoadoutIndex].id, loadout).then(function () {
+				return MainService.updateCurrentLoadout(self.user.id, self.currentLoadoutIndex);
+			}).then(function (user) {
+				self.user = user;
+				self.state = 'code'
+			}).catch(function (error) {
+				console.log(error)
+			})
+			
 		}
 
 		self.state = 'start';
@@ -269,8 +282,8 @@
 			});
 		}
 
-		function updateLoadout (code, loadoutIndex) {
-			return $http.put(baseUrl + '/users/' + code + '?query=loadout', { equiped_loadout_index: loadoutIndex}).then(function (response) {
+		function updateCurrentLoadout (code, loadoutIndex) {
+			return $http.put(baseUrl + '/users/' + code + '?query=loadout', { equiped_loadout_index: loadoutIndex }).then(function (response) {
 				return response.data;
 			});
 		}
@@ -299,13 +312,20 @@
 			});
 		}
 
+		function updateLoadout (code, loadoutId, loadout) {
+			return $http.put(baseUrl + '/users/' + code + '/loadouts/' + loadoutId, loadout).then(function (response) {
+				return response.data;
+			});
+		}
+
 		return {
 			getUser: getUser,
-			updateLoadout: updateLoadout,
+			updateCurrentLoadout: updateCurrentLoadout,
 			getItems: getItems,
 			createUser: createUser,
 			getPurchasedItems: getPurchasedItems,
-			purchaseItem: purchaseItem
+			purchaseItem: purchaseItem,
+			updateLoadout: updateLoadout
 		}
 	}
 

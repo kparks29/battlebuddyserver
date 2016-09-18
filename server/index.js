@@ -164,7 +164,7 @@ app.get('/users/:id/items', (req, res) => {
 	})
 })
 
-app.put('/users/:id/loadout/:loadoutId', (req, res) => {
+app.put('/users/:id/loadouts/:loadoutId', (req, res) => {
 	if (!req.params.id || !req.params.loadoutId) {
 		res.status(400).send('Missing Param Id')	
 	}
