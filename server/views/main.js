@@ -161,7 +161,7 @@
 		}
 
 		function onBuyClicked () {
-			MainService.purchaseItem(self.user.code, self.items[self.state][self.currentItemIndex].id).then(function (user) => {
+			MainService.purchaseItem(self.user.code, self.items[self.state][self.currentItemIndex].id).then(function (user) {
 				self.user = user;
 				if (self.isNew) {
 					self[self.state] = self.items[self.state][self.currentItemIndex];
