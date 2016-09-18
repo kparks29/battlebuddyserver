@@ -189,7 +189,7 @@
 			
 		}
 
-		self.state = 'start';
+		self.state = 'character';
 		self.onEnterCodeClicked = onEnterCodeClicked;
 		self.onCreateClicked = onCreateClicked;
 		self.onEditLoadoutClicked = onEditLoadoutClicked;

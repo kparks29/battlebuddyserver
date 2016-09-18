@@ -130,6 +130,10 @@ p {
   height: 450px;
   line-height: 320px; }
 
+#character .left, #character .right {
+  margin-top: 200px;
+  padding: 50px 0; }
+
 .store-category .icon {
   margin: 20px auto;
   padding: 40px; }
