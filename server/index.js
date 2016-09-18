@@ -107,12 +107,10 @@ app.post('/users/:id/purchase', (req, res) => {
 	}).then((results) => {
 		return query(`UPDATE users SET coins=$1 WHERE id=$2;`, [coins - results[0].cost, userId])
 	}).then(() => {
-		console.log('updated users coins')
 		return query(`SELECT id, name, gender, coins, wins, loses, type, code, equiped_loadout_index FROM users WHERE id=$1 LIMIT 1;`, [userId])
 	}).then((results) => {
-		console.log('got user', results)
 		user = results[0]
-		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [userId])
+		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [user.id])
 	}).then((results) => {
 		console.log('got loadouts ')
 		user.loadouts = results
