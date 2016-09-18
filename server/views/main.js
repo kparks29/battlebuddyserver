@@ -131,6 +131,7 @@
 			MainService.createUser(self.newUser).then(function (user) {
 				self.user = user;
 				self.currentItemIndex = 0;
+				self.currentLoadoutIndex = 0;
 				self.state = 'weapon';
 			}).catch(function (error) {
 				console.log(error)
