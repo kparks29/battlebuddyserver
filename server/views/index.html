@@ -46,18 +46,18 @@
     <section id="info" ng-if="ctrl.state === 'info'">
       <h1>INFO</h1>
       <p>
-        <label for="name">Name</label>
+        <label for="name">Name: </label>
         <input type="text" id="name" ng-model="ctrl.newUser.name"></div>
       </p>
       <p>
-        <label>Gender</label>
+        <label>Gender:</label>
         <select ng-model="ctrl.newUser.gender">
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
       </p>
-      <p>
-        <a class="button" ng-click="ctrl.onInfoClicked()"></a>
+      <p class="top-space">
+        <a class="button" ng-click="ctrl.onInfoClicked()">Next</a>
       </p>
     </section>
 
@@ -66,13 +66,13 @@
     <section id="character" ng-if="ctrl.state === 'character'">
       <h1>CHARACTER CLASS</h1>
       <p>Suit your place style</p>
-      <p> {{ ctrl.classes[ctrl.currentClassName].name }}: {{ ctrl.classes[ctrl.currentClassName].subtitle }}</p>
+      <p> {{ ctrl.classes[ctrl.currentClassIndex].name }}: {{ ctrl.classes[ctrl.currentClassIndex].subtitle }}</p>
       <div class="row">
         <div ng-click="ctrl.onLeftClicked()"><i>left</i></div>
-        <div><img src=""></div>
+        <div class="image"><img ng-src="{{ ctrl.classes[ctrl.currentClassIndex].image }}"></div>
         <div ng-click="ctrl.onRightClicked()"><i>right</i></div>
       </div>
-      <p>
+      <p class="top-space">
         <a class="button" ng-click="ctrl.onClassChosenClicked()">Choose</a>
       </p>
       <p>*You cannot change later!</p>
@@ -83,25 +83,23 @@
     <section id="dashboard" ng-if="ctrl.state === 'dashboard'">
       <h1>DASHBOARD</h1>
       <div class="row">
-        <div>{{ ctrl.user.name }}</div>
+        <div>Name: {{ ctrl.user.name }}</div>
         <div>Coins: {{ ctrl.user.coins }}</div>
       </div>
       <h2>Battle Sets</h2>
-      <div class="battlesets">
-        <div class="row">
-          <div ng-click="ctrl.onBattleSetSelected(0)" class="battleset"><p><a class="button">{{ ctrl.user.loadouts[0].name || 'Battle Set 1' }}</a></p></div>
-          <div ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 0)"><p><a class="button secondary">Edit</a></p></div>
-        </div>
-        <div class="row">
-          <div ng-click="ctrl.onBattleSetSelected(1)" class="battleset"><p><a class="button">{{ ctrl.user.loadouts[1].name || 'Battle Set 2' }}</a></p></div>
-          <div ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 1)"><p><a class="button secondary">Edit</a></p></div>
-        </div>
-        <div class="row">
-          <div ng-click="ctrl.onBattleSetSelected(2)" class="battleset"><p><a class="button">{{ ctrl.user.loadouts[2].name || 'Battle Set 3' }}</a></p></div>
-          <div ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 2)"><p><a class="button secondary">Edit</a></p></div>
-        </div>
-      </div>
       <p>
+        <a class="button" ng-click="ctrl.onBattleSetSelected(0)">{{ ctrl.user.loadouts[0].name || 'Battle Set 1' }}</a>
+        <a class="button secondary" ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 0)">Edit</a>
+      </p>
+      <p>
+        <a class="button" ng-click="ctrl.onBattleSetSelected(1)">{{ ctrl.user.loadouts[1].name || 'Battle Set 2' }}</a>
+        <a class="button secondary" ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 1)">Edit</a>
+      </p>
+      <p>
+        <a class="button" ng-click="ctrl.onBattleSetSelected(2)">{{ ctrl.user.loadouts[2].name || 'Battle Set 3' }}</a>
+        <a class="button secondary" ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 2)">Edit</a>
+      </p>
+      <p class="top-space">
         <a class="button" ng-click="ctrl.onStoreClicked()">Store</a>
       </p>
     </section>
@@ -117,15 +115,15 @@
       </div>
       <hr>
       <p>
-        <a ng-click="ctrl.onStoreCategorySelected('weapon')">Weapons</a>
+        <a class="button secondary" ng-click="ctrl.onStoreCategorySelected('weapon')">Weapon</a>
       </p>
       <p>
-        <a ng-click="ctrl.onStoreCategorySelected('armor')">Armor</a>
+        <a class="button secondary" ng-click="ctrl.onStoreCategorySelected('armor')">Armor</a>
       </p>
       <p>
-        <a ng-click="ctrl.onStoreCategorySelected('speed')">Speed</a>
+        <a class="button secondary" ng-click="ctrl.onStoreCategorySelected('speed')">Speed</a>
       </p>
-       <p>
+      <p class="top-space">
         <a class="button" ng-class="{'inactive': !ctrl.weapon || !ctrl.armor || !ctrl.speed}" ng-click="ctrl.onSummaryClicked(ctrl.weapon && ctrl.armor && ctrl.speed)">Summary</a>
       </p>
     </section>
@@ -135,23 +133,28 @@
     <section id="weapon" class="store-category" ng-if="ctrl.state === 'weapon'">
       <h1>WEAPON</h1>
       <div class="row">
-        <div class="left">
-          <i ng-click="ctrl.onUpItemClicked()">Up</i>
+        <div>
+          <div ng-click="ctrl.onUpItemClicked()" class="icon up"></div>
           <div> {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].name }} </div>
-          <i ng-click="ctrl.onDownItemClicked()">Down</i>
-          <div class="description">{{ ctrl.items[ctrl.state][ctrl.currentItemIndex].description }} </div>
+          <div ng-click="ctrl.onDownItemClicked()" class="icon down"></div>
+          <div class="description top-space">Description: <br><span>{{ ctrl.items[ctrl.state][ctrl.currentItemIndex].description }}</span></div>
         </div>
-        <div class="right">
-          <p><img src=""></p>
+        <div>
+          <p><img ng-src="{{ ctrl.itemImages[ctrl.currentItemIndex] }}"></p>
+          <p>Cost: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].cost }}</p>
           <p ng-if="!ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onBuyClicked()">BUY</a></p>
           <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIP</a></p>
-          <p>Stats
-            <!-- <ul>
-              <li></li>
-            </ul> -->
-          </p>
         </div>
       </div>
+      <p>Stats
+        <ul>
+          <li>Damage: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].damage }}</li>
+          <li>Range: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].range }}</li>
+          <li>Spread: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].spread }}</li>
+          <li>Speed: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].speed }}</li>
+          <li>Cooldown: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].cooldown }}</li>
+        </ul>
+      </p>
     </section>
 
 
@@ -169,13 +172,15 @@
           <p><img src=""></p>
           <p ng-if="!ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onBuyClicked()">BUY</a></p>
           <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIP</a></p>
-          <p>Stats
-            <!-- <ul>
-              <li></li>
-            </ul> -->
-          </p>
         </div>
       </div>
+      <p>Stats
+        <ul>
+          <li>Time Active: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].effect }}</li>
+          <li ng-if="ctrl.items[ctrl.state][ctrl.currentItemIndex].health">Health: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].health }}</li>
+          <li>Cooldown: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].cooldown }}</li>
+        </ul>
+      </p>
     </section>
 
 
@@ -194,13 +199,15 @@
           <p><img src=""></p>
           <p ng-if="!ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onBuyClicked()">BUY</a></p>
           <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIP</a></p>
-          <p>Stats
-            <!-- <ul>
-              <li></li>
-            </ul> -->
-          </p>
         </div>
       </div>
+      <p>Stats
+        <ul>
+          <li>Boost Mulitplyer: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].multiplier }}x</li>
+          <li>Duration: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].effect }}</li>
+          <li>Cooldown: {{ ctrl.items[ctrl.state][ctrl.currentItemIndex].cooldown }}</li>
+        </ul>
+      </p>
     </section>
 
 

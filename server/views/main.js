@@ -125,7 +125,7 @@
 		}
 
 		function onClassChosenClicked () {
-			var type = self.classes[self.currentClassIndex];
+			var type = self.classes[self.currentClassIndex].name;
 			self.newUser.type = type;
 			MainService.createUser(self.newUser).then(function (user) {
 				self.user = user;
@@ -170,7 +170,7 @@
 			self.state = 'store'
 		}
 
-		self.state = 'start';
+		self.state = 'weapon';
 		self.onEnterCodeClicked = onEnterCodeClicked;
 		self.onCreateClicked = onCreateClicked;
 		self.onEditLoadoutClicked = onEditLoadoutClicked;
@@ -193,18 +193,33 @@
 		self.classes = [
 			{ 
 				name: 'attack',
-				subtitle: 'Stronger Attacks'
+				subtitle: 'Stronger Attacks',
+				image: 'assets/robot_screenshot.png'
 			},
 			{ 
 				name: 'defense',
-				subtitle: 'Stronger Defense'
+				subtitle: 'Stronger Defense',
+				image: 'assets/robot_screenshot.png'
 			},
 			{ 
 				name: 'speed',
-				subtitle: 'Faster Movement'
+				subtitle: 'Faster Movement',
+				image: 'assets/robot_screenshot.png'
 			}
 		]
 		self.currentClassIndex = 0;
+		self.currentItemIndex = 0;
+		self.itemImages = [
+			'assets/robot_screenshot.png',
+			'assets/robot_screenshot.png',
+			'assets/robot_screenshot.png',
+			'assets/robot_screenshot.png',
+			'assets/robot_screenshot.png',
+			'assets/robot_screenshot.png',
+			'assets/robot_screenshot.png',
+			'assets/robot_screenshot.png',
+			'assets/robot_screenshot.png'
+		]
 
 		MainService.getItems('weapon').then(function (items) {
 			self.items['weapon'] = items;
