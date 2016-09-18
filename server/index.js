@@ -87,6 +87,8 @@ app.post('/users', (req, res) => {
 })
 
 app.post('/users/:id/purchase', (req, res) => {
+	let coins;
+
 	if (!req.query.item) {
 		res.status(400).send('Missing Query Param Item')
 	}
@@ -95,11 +97,23 @@ app.post('/users/:id/purchase', (req, res) => {
 		res.status(400).send('Missing Param Id')	
 	}
 
-	query(`SELECT id FROM users WHERE code=$1 LIMIT 1;`, [parseInt(req.params.id)]).then((results) => {
+	query(`SELECT id, coins FROM users WHERE code=$1 LIMIT 1;`, [parseInt(req.params.id)]).then((results) => {
 		let userId = results[0].id
+		coins = results[0].coins
 		return query(`INSERT INTO items_purchased (user_id, item_id) VALUES($1, $2);`, [userId, parseInt(req.query.item)])
 	}).then(() => {
-		res.status(200).send('Success')
+		return query(`SELECT cost FROM items WHERE id=$1;`, [parseInt(req.query.item)])
+	}).then((results) => {
+		return query(`UPDATE users SET coins=$1 WHERE id=$2;`, [userId, coins - results[0].cost])
+	}).then(() => {
+		return query(`SELECT id, name, gender, coins, wins, loses, type, code, equiped_loadout_index FROM users WHERE id=$1 LIMIT 1;`, [userId])
+	}).then((results) => {
+		user = results[0]
+		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [userId])
+	}).then((results) => {
+		user.loadouts = results
+		delete user.id
+		res.status(200).send(user)
 	}).catch((error) => {
 		res.status(400).send(error)
 	})

@@ -19,6 +19,9 @@
 				self.isNew = false;
 				self.user = user;
 				console.log(user)
+				return MainService.getPurchasedItems(user.code)
+			}).then(function (items) {
+				self.purchasedItems = items;
 				self.state = 'welcome';
 				$timeout(function () {
 					self.state = 'dashboard'
@@ -148,6 +151,38 @@
 			})
 		}
 
+		function hasPurchased (itemId) {
+			for (var i=0; i<self.purchasedItems.length; i++) {
+				if (self.purchasedItems[i].id === itemId) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		function onBuyClicked () {
+			MainService.purchaseItem(self.user.code, self.items[self.state][self.currentItemIndex].id).then(function (user) => {
+				self.user = user;
+				if (self.isNew) {
+					self[self.state] = self.items[self.state][self.currentItemIndex];
+					self.purchasedItems.push(self[self.state])
+					if (self.state === 'weapon') {
+						self.state = 'armor'
+					} else if (self.state === 'armor') {
+						self.state = 'speed'
+					} else if (self.state === 'speed') {
+						self.state = 'summary'
+					}
+				}
+			}).catch(function (error) {
+				console.log(error)
+			})
+		}
+
+		function onEquipClicked () {
+			self[self.state] = self.items[self.state][self.currentItemIndex];
+			self.state = 'store'
+		}
 
 		self.state = 'start';
 		self.onEnterCodeClicked = onEnterCodeClicked;
@@ -163,8 +198,12 @@
 		self.onLeftClicked = onLeftClicked;
 		self.onRightClicked = onRightClicked;
 		self.onClassChosenClicked = onClassChosenClicked;
+		self.hasPurchased = hasPurchased;
+		self.onBuyClicked = onBuyClicked;
+		self.onEquipClicked = onEquipClicked;
 		self.items = {};
 		self.newUser = {};
+		self.purchasedItems = [];
 		self.classes = [
 			{ 
 				name: 'attack',
@@ -218,10 +257,25 @@
 			});
 		}
 
+		function getPurchasedItems (code) {
+			return $http.get(baseUrl + '/users/' + code + '/items' + category).then(function (response) {
+				return response.data;
+			});
+		}
+
+		function purchaseItem (code, itemId) {
+			return $http.post(baseUrl + '/users/' + code + '/purchase?item=' + itemId).then(function (response) {
+				return response.data;
+			});
+		}
+
 		return {
 			getUser: getUser,
 			updateLoadout: updateLoadout,
-			getItems: getItems
+			getItems: getItems,
+			createUser: createUser,
+			getPurchasedItems: getPurchasedItems,
+			purchaseItem: purchaseItem
 		}
 	}
 
