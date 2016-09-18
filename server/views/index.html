@@ -65,12 +65,12 @@
 
     <section id="character" ng-if="ctrl.state === 'character'">
       <h1>CHARACTER CLASS</h1>
-      <p>Suit your place style</p>
+      <p>Suit your play style</p>
       <p> {{ ctrl.classes[ctrl.currentClassIndex].name }}: {{ ctrl.classes[ctrl.currentClassIndex].subtitle }}</p>
       <div class="row">
-        <div ng-click="ctrl.onLeftClicked()"><i>left</i></div>
+        <div ng-click="ctrl.onLeftClicked()" class="icon left"></div>
         <div class="image"><img ng-src="{{ ctrl.classes[ctrl.currentClassIndex].image }}"></div>
-        <div ng-click="ctrl.onRightClicked()"><i>right</i></div>
+        <div ng-click="ctrl.onRightClicked()" class="icon right"></div>
       </div>
       <p class="top-space">
         <a class="button" ng-click="ctrl.onClassChosenClicked()">Choose</a>
