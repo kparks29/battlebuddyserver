@@ -67,8 +67,8 @@
 			self.state = 'store';
 		}
 
-		function onBattleSetSelected (index) {
-			MainService.updateCurrentLoadout(self.user.code, index).then(function (user) {
+		function onBattleSetSelected (id) {
+			MainService.updateCurrentLoadout(self.user.code, id).then(function (user) {
 				self.user = user;
 				self.state = 'code';
 			}).catch(function (error) {
@@ -179,7 +179,7 @@
 				name: self.setName
 			}
 			MainService.updateLoadout(self.user.code, self.user.loadouts[self.currentLoadoutIndex].id, loadout).then(function () {
-				return MainService.updateCurrentLoadout(self.user.code, self.currentLoadoutIndex);
+				return MainService.updateCurrentLoadout(self.user.code, self.user.loadouts[self.currentLoadoutIndex].id);
 			}).then(function (user) {
 				self.user = user;
 				self.state = 'code'
@@ -284,8 +284,8 @@
 			});
 		}
 
-		function updateCurrentLoadout (code, loadoutIndex) {
-			return $http.put(baseUrl + '/users/' + code + '?query=loadout', { equiped_loadout_index: loadoutIndex }).then(function (response) {
+		function updateCurrentLoadout (code, loadoutId) {
+			return $http.put(baseUrl + '/users/' + code + '?query=loadout', { equiped_loadout_index: loadoutId }).then(function (response) {
 				return response.data;
 			});
 		}

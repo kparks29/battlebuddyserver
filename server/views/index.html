@@ -88,15 +88,15 @@
       </div>
       <h2>Battle Sets</h2>
       <p>
-        <a class="button" ng-click="ctrl.onBattleSetSelected(0)">{{ ctrl.user.loadouts[0].name || 'Battle Set 1' }}</a>
+        <a class="button" ng-click="ctrl.onBattleSetSelected(ctrl.user.loadouts[0].id)">{{ ctrl.user.loadouts[0].name || 'Battle Set 1' }}</a>
         <a class="button secondary" ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 0)">Edit</a>
       </p>
       <p>
-        <a class="button" ng-click="ctrl.onBattleSetSelected(1)">{{ ctrl.user.loadouts[1].name || 'Battle Set 2' }}</a>
+        <a class="button" ng-click="ctrl.onBattleSetSelected(ctrl.user.loadouts[1].id)">{{ ctrl.user.loadouts[1].name || 'Battle Set 2' }}</a>
         <a class="button secondary" ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 1)">Edit</a>
       </p>
       <p>
-        <a class="button" ng-click="ctrl.onBattleSetSelected(2)">{{ ctrl.user.loadouts[2].name || 'Battle Set 3' }}</a>
+        <a class="button" ng-click="ctrl.onBattleSetSelected(ctrl.user.loadouts[2].id)">{{ ctrl.user.loadouts[2].name || 'Battle Set 3' }}</a>
         <a class="button secondary" ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 2)">Edit</a>
       </p>
       <p class="top-space">
