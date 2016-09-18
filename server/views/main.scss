@@ -21,13 +21,13 @@ body {
 	min-height: 100%;
 	padding: 0;
 	margin: 0;
-	background-color: $main-color;
-	font-family: Journey;
 	section {
 		height: calc(100% - 40px);
 		width: calc(100% - 40px);
 		padding: 20px;
 		font-size: 50px;
+		background-color: $main-color;
+		font-family: Journey;
 	}
 }
 
@@ -38,13 +38,12 @@ h1 {
 
 .button {
 	width: 80%;
-	font-size: 48px;
-	line-height: 48px;
+	font-size: 50px;
+	line-height: 50px;
 	padding: 20px 15%;
 	border: 2px solid $secondary-color;
-	border-radius: 15px;
 	background-color: $button-color;
-	box-shadow: 10px 10px 5px #888888;
+	box-shadow: 10px 10px 5px #666;
 	color: $secondary-color;
 }
 
@@ -65,6 +64,18 @@ h1 {
 		height: 100%;
 		width: 100%;
 	}
+}
+
+input {
+	width: 50%;
+	font-size: 50px;
+	line-height: 50px;
+	padding: 10px;
+	background-color: $main-color;
+	border: none;
+	border-bottom: 10px solid $secondary-color;
+	margin: 20px 0 50px;
+	text-align: center;
 }
 
 #start {

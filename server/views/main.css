@@ -13,14 +13,14 @@ body {
   height: 100%;
   min-height: 100%;
   padding: 0;
-  margin: 0;
-  background-color: #C49A6C;
-  font-family: Journey; }
+  margin: 0; }
   body section {
     height: calc(100% - 40px);
     width: calc(100% - 40px);
     padding: 20px;
-    font-size: 50px; }
+    font-size: 50px;
+    background-color: #C49A6C;
+    font-family: Journey; }
 
 h1 {
   font-size: 90px;
@@ -28,13 +28,12 @@ h1 {
 
 .button {
   width: 80%;
-  font-size: 48px;
-  line-height: 48px;
+  font-size: 50px;
+  line-height: 50px;
   padding: 20px 15%;
   border: 2px solid #C2B59B;
-  border-radius: 15px;
   background-color: #754C29;
-  box-shadow: 10px 10px 5px #888888;
+  box-shadow: 10px 10px 5px #666;
   color: #C2B59B; }
 
 .row {
@@ -51,6 +50,17 @@ h1 {
   .logo img {
     height: 100%;
     width: 100%; }
+
+input {
+  width: 50%;
+  font-size: 50px;
+  line-height: 50px;
+  padding: 10px;
+  background-color: #C49A6C;
+  border: none;
+  border-bottom: 10px solid #C2B59B;
+  margin: 20px 0 50px;
+  text-align: center; }
 
 #start p {
   text-align: center; }
