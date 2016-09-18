@@ -44,17 +44,18 @@ h1 {
 	}
 }
 
-#start {
-	.logo {
-		height: 33%;
-		width: 80%;
-		margin: 40px auto 20px;
-		img {
-			height: 100%;
-			width: 100%;
-			border: 4px solid black;
-		}
+.logo {
+	height: 33%;
+	width: 80%;
+	margin: 40px auto 20px;
+	img {
+		height: 100%;
+		width: 100%;
+		border: 4px solid black;
 	}
+}
+
+#start {
 	p {
 		text-align: center;
 		&:nth-child(2) {
@@ -82,16 +83,6 @@ h1 {
 
 
 #welcome {
-	.logo {
-		height: 33%;
-		width: 80%;
-		margin: 40px auto 20px;
-		img {
-			height: 100%;
-			width: 100%;
-			border: 4px solid black;
-		}
-	}
 	p {
 		text-align: center;
 		&:nth-child(2) {
