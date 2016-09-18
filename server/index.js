@@ -87,7 +87,8 @@ app.post('/users', (req, res) => {
 })
 
 app.post('/users/:id/purchase', (req, res) => {
-	let coins;
+	let coins,
+		userId;
 
 	if (!req.query.item) {
 		res.status(400).send('Missing Query Param Item')
@@ -98,7 +99,7 @@ app.post('/users/:id/purchase', (req, res) => {
 	}
 
 	query(`SELECT id, coins FROM users WHERE code=$1 LIMIT 1;`, [parseInt(req.params.id)]).then((results) => {
-		let userId = results[0].id
+		userId = results[0].id
 		coins = results[0].coins
 		return query(`INSERT INTO items_purchased (user_id, item_id) VALUES($1, $2);`, [userId, parseInt(req.query.item)])
 	}).then(() => {
