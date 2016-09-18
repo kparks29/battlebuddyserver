@@ -58,7 +58,7 @@ input {
   padding: 10px;
   background-color: #C49A6C;
   border: none;
-  border-bottom: 10px solid #C2B59B;
+  border-bottom: 10px solid white;
   margin: 20px 0 50px;
   text-align: center; }
 
@@ -66,34 +66,6 @@ input {
   text-align: center; }
   #start p:nth-child(2) {
     margin: 30% 0 10%; }
-
-#start label {
-  font-size: 50px; }
-
-#start input {
-  width: 50%;
-  font-size: 50px;
-  line-height: 50px;
-  padding: 10px;
-  background-color: #C49A6C;
-  border-bottom: 2px solid #C2B59B;
-  border-radius: 15px;
-  margin: 20px 0 50px;
-  text-align: center; }
-
-#info label {
-  font-size: 50px; }
-
-#info input {
-  width: 50%;
-  font-size: 50px;
-  line-height: 50px;
-  padding: 10px;
-  background-color: #C49A6C;
-  border-bottom: 2px solid #C2B59B;
-  border-radius: 15px;
-  margin: 20px 0 50px;
-  text-align: center; }
 
 #welcome p {
   text-align: center; }
@@ -123,14 +95,9 @@ input {
   text-align: center; }
 
 #store .row {
-  display: flex;
-  width: 100%;
   font-size: 50px;
   height: 100px;
   line-height: 100px; }
-  #store .row div {
-    flex: 1;
-    text-align: center; }
 
 #store p {
   margin-top: 25%;

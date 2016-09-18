@@ -73,7 +73,7 @@ input {
 	padding: 10px;
 	background-color: $main-color;
 	border: none;
-	border-bottom: 10px solid $secondary-color;
+	border-bottom: 10px solid white;
 	margin: 20px 0 50px;
 	text-align: center;
 }
@@ -85,39 +85,12 @@ input {
 			margin: 30% 0 10%;
 		}
 	}
-	label {
-		font-size: 50px;
-	}
-	input {
-		width: 50%;
-		font-size: 50px;
-		line-height: 50px;
-		padding: 10px;
-		background-color: $main-color;
-		border-bottom: 2px solid $secondary-color;
-		border-radius: 15px;
-		margin: 20px 0 50px;
-		text-align: center;
-	}
 }
 
 
 
 #info {
-	label {
-		font-size: 50px;
-	}
-	input {
-		width: 50%;
-		font-size: 50px;
-		line-height: 50px;
-		padding: 10px;
-		background-color: $main-color;
-		border-bottom: 2px solid $secondary-color;
-		border-radius: 15px;
-		margin: 20px 0 50px;
-		text-align: center;
-	}
+
 }
 
 
@@ -168,15 +141,9 @@ input {
 #store {
 
 	.row {
-		display: flex;
-		width: 100%;
 		font-size: 50px;
 		height: 100px;
 		line-height: 100px;
-		div {
-			flex: 1;
-			text-align: center;
-		}
 	}
 	p {
 	    margin-top: 25%;
