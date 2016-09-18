@@ -213,9 +213,9 @@
 
     <section id="summary" ng-if="ctrl.state === 'summary'">
       <h1>SUMMARY</h1>
-      <p class="top-space">Weapon: {{ ctrl.weapon.name }} <a class="button secondary" ng-click="ctrl.onStoreCategorySelected('weapon')">Edit</a></p>
-      <p>Armor: {{ ctrl.armor.name }} <a class="button secondary" ng-click="ctrl.onStoreCategorySelected('armor')">Edit</a></p>
-      <p>Speed: {{ ctrl.speed.name }} <a class="button secondary" ng-click="ctrl.onStoreCategorySelected('speed')">Edit</a></p>
+      <p class="top-space">Weapon: {{ ctrl.weapon.name }} <a ng-if="!ctrl.isNew" class="button secondary" ng-click="ctrl.onStoreCategorySelected('weapon')">Edit</a></p>
+      <p>Armor: {{ ctrl.armor.name }} <a ng-if="!ctrl.isNew" class="button secondary" ng-click="ctrl.onStoreCategorySelected('armor')">Edit</a></p>
+      <p>Speed: {{ ctrl.speed.name }} <a ng-if="!ctrl.isNew" class="button secondary" ng-click="ctrl.onStoreCategorySelected('speed')">Edit</a></p>
       <p>
         <label for="name">Name of Set:</label><br>
         <input type="type" id="name" ng-model="ctrl.setName" />
