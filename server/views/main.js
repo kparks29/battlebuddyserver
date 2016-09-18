@@ -258,7 +258,7 @@
 		}
 
 		function getPurchasedItems (code) {
-			return $http.get(baseUrl + '/users/' + code + '/items' + category).then(function (response) {
+			return $http.get(baseUrl + '/users/' + code + '/items').then(function (response) {
 				return response.data;
 			});
 		}
