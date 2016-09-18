@@ -188,9 +188,9 @@ app.put('/users/:id', (req, res) => {
 		user;
 
 	if (req.query.query === 'coins') {
-		promise = query(`UPDATE users SET coins=$1;`, [req.body.coins])
+		promise = query(`UPDATE users SET coins=$1 WHERE code=$2;`, [req.body.coins, parseInt(req.params.id)])
 	} else if (req.query.query === 'loadout') {
-		promise = query(`UPDATE users SET equiped_loadout_index=$1;`, [req.body.equiped_loadout_index])
+		promise = query(`UPDATE users SET equiped_loadout_index=$1 WHERE code=$2;`, [req.body.equiped_loadout_index, parseInt(req.params.id)])
 	}
 
 	promise.then(() => {
