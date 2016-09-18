@@ -175,10 +175,11 @@
 			var loadout = {
 				weapon_item_id: self.weapon.id,
 				armor_item_id: self.armor.id,
-				speed_item_id: self.speed.id
+				speed_item_id: self.speed.id,
+				name: self.setName
 			}
 			MainService.updateLoadout(self.user.code, self.user.loadouts[self.currentLoadoutIndex].id, loadout).then(function () {
-				return MainService.updateCurrentLoadout(self.user.id, self.currentLoadoutIndex);
+				return MainService.updateCurrentLoadout(self.user.code, self.currentLoadoutIndex);
 			}).then(function (user) {
 				self.user = user;
 				self.state = 'code'
