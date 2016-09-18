@@ -57,7 +57,7 @@ app.get('/users/:id', (req, res) => {
 
 	query(`SELECT id, name, gender, coins, wins, loses, type, code, equiped_loadout_index FROM users WHERE code=$1 LIMIT 1;`, [parseInt(req.params.id)]).then((results) => {
 		user = results[0]
-		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [user.id])
+		return query(`SELECT id, weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [user.id])
 	}).then((results) => {
 		user.loadouts = results
 		delete user.id
@@ -80,11 +80,17 @@ app.post('/users', (req, res) => {
 	getRandom().then((results) => {
 		code = results
 	return query(`INSERT INTO users (name, gender, coins, wins, loses, type, code, equiped_loadout_index) VALUES ($1, $2, 1000, 0, 0, $3, $4, 0);`, [req.body.name || null, req.body.gender || null, req.body.type, code])
-	}).then((results) => {
+	}).then(() => {
 		return query(`SELECT id, name, gender, coins, wins, loses, type, code, equiped_loadout_index FROM users WHERE code=$1 LIMIT 1;`, [code])
 	}).then((results) => {
 		user = results[0]
-		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [user.id])
+		return query(`INSERT INTO loadouts (user_id) VALUES($1);`, [user.id])
+	}).then(() => {
+		return query(`INSERT INTO loadouts (user_id) VALUES($1);`, [user.id])
+	}).then(() => {
+		return query(`INSERT INTO loadouts (user_id) VALUES($1);`, [user.id])
+	}).then(() => {
+		return query(`SELECT id, weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [user.id])
 	}).then((results) => {
 		user.loadouts = results
 		delete user.id
@@ -119,7 +125,7 @@ app.post('/users/:id/purchase', (req, res) => {
 		return query(`SELECT id, name, gender, coins, wins, loses, type, code, equiped_loadout_index FROM users WHERE id=$1 LIMIT 1;`, [userId])
 	}).then((results) => {
 		user = results[0]
-		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [user.id])
+		return query(`SELECT id, weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [user.id])
 	}).then((results) => {
 		user.loadouts = results
 		delete user.id
@@ -158,8 +164,8 @@ app.get('/users/:id/items', (req, res) => {
 	})
 })
 
-app.post('/users/:id/loadout', (req, res) => {
-	if (!req.params.id) {
+app.put('/users/:id/loadout/:loadoutId', (req, res) => {
+	if (!req.params.id || !req.params.loadoutId) {
 		res.status(400).send('Missing Param Id')	
 	}
 
@@ -169,7 +175,7 @@ app.post('/users/:id/loadout', (req, res) => {
 
 	query(`SELECT id FROM users WHERE code=$1 LIMIT 1;`, [parseInt(req.params.id)]).then((results) => {
 		let userId = results[0].id
-		return query(`INSERT INTO loadouts (user_id, weapon_item_id, armor_item_id, speed_item_id, name) VALUES($1, $2, $3, $4, $5);`, [userId, req.body.weapon_item_id, req.body.armor_item_id, req.body.speed_item_id, req.body.name])
+		return query(`UPDATE loadouts SET user_id=$1, weapon_item_id=$2, armor_item_id=$3, speed_item_id=$4, name=$5 WHERE id=$6;`, [userId, req.body.weapon_item_id, req.body.armor_item_id, req.body.speed_item_id, req.body.name, parseInt(req.params.loadoutId)])
 	}).then(() => {
 		res.status(200).send('Success')
 	}).catch((error) => {
@@ -191,7 +197,7 @@ app.put('/users/:id', (req, res) => {
 		return query(`SELECT id, name, gender, coins, wins, loses, type, code, equiped_loadout_index FROM users WHERE code=$1 LIMIT 1;`, [parseInt(req.params.id)])
 	}).then((results) => {
 		user = results[0]
-		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [user.id])
+		return query(`SELECT id, weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [user.id])
 	}).then((results) => {
 		user.loadouts = results
 		delete user.id

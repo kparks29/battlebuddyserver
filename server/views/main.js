@@ -18,7 +18,6 @@
 			MainService.getUser(self.code).then(function (user) {
 				self.isNew = false;
 				self.user = user;
-				console.log(user)
 				return MainService.getPurchasedItems(user.code)
 			}).then(function (items) {
 				self.purchasedItems = items;
@@ -40,6 +39,8 @@
 			self.currentItemIndex = 0;
 			self.currentLoadout = loadouts[index];
 			self.currentLoadoutIndex = index;
+			self.isLoadoutEdit = true;
+			self.setName = self.currentLoadout.name;
 			for (var i=0; i<self.items.weapon; i++) {
 				if (self.items.weapon[i].id === self.currentLoadout.weapon_item_id) {
 					self.weapon = self.items.weapon[i]
@@ -137,7 +138,6 @@
 		}
 
 		function hasPurchased (itemId) {
-			console.log(itemId, self.purchasedItems)
 			for (var i=0; i<self.purchasedItems.length; i++) {
 				if (self.purchasedItems[i].id === itemId) {
 					return true;
@@ -170,7 +170,11 @@
 			self.state = 'store'
 		}
 
-		self.state = 'weapon';
+		function onSaveSet () {
+
+		}
+
+		self.state = 'start';
 		self.onEnterCodeClicked = onEnterCodeClicked;
 		self.onCreateClicked = onCreateClicked;
 		self.onEditLoadoutClicked = onEditLoadoutClicked;
@@ -187,6 +191,7 @@
 		self.hasPurchased = hasPurchased;
 		self.onBuyClicked = onBuyClicked;
 		self.onEquipClicked = onEquipClicked;
+		self.onSaveSet = onSaveSet;
 		self.items = {};
 		self.newUser = {};
 		self.purchasedItems = [];
@@ -209,17 +214,41 @@
 		]
 		self.currentClassIndex = 0;
 		self.currentItemIndex = 0;
-		self.itemImages = [
-			'assets/robot_screenshot.png',
-			'assets/robot_screenshot.png',
-			'assets/robot_screenshot.png',
-			'assets/robot_screenshot.png',
-			'assets/robot_screenshot.png',
-			'assets/robot_screenshot.png',
-			'assets/robot_screenshot.png',
-			'assets/robot_screenshot.png',
-			'assets/robot_screenshot.png'
-		]
+		self.itemImages = {
+			weapon: [
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png'
+			],
+			armor: [
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png'
+			],
+			speed: [
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png',
+				'assets/robot_screenshot.png'
+			]
+		}
 
 		MainService.getItems('weapon').then(function (items) {
 			self.items['weapon'] = items;

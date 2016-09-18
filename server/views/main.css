@@ -99,6 +99,9 @@ p {
 .top-space {
   margin-top: 25%; }
 
+.balance {
+  margin: 0 0 10px; }
+
 #info h1 {
   margin-bottom: 25%; }
 
@@ -135,17 +138,25 @@ p {
   font-size: 35px; }
 
 .store-category .row {
-  height: calc(50% - 140px); }
+  height: 60%; }
   .store-category .row .top-space {
     margin-top: 85px; }
 
 .store-category img {
   width: 100%; }
 
-.store-category ul li {
-  list-style: none; }
+.store-category ul {
+  text-align: center;
+  padding: 0; }
+  .store-category ul li {
+    list-style: none;
+    font-size: 35px; }
 
-#code div {
-  font-size: 150px;
-  padding: 10px;
-  border: 2px solid black; }
+#weapon.store-category .row {
+  height: 52%; }
+
+#speed.store-category .row {
+  height: 50%; }
+
+#code p {
+  font-size: 150px; }

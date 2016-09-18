@@ -129,6 +129,10 @@ p {
     margin-top: 25%;
 }
 
+.balance {
+	margin: 0 0 10px;
+}
+
 #start {
 	
 }
@@ -201,7 +205,7 @@ p {
 		}
 	}
 	.row {
-		height: calc(50% - 140px);
+		height: 60%;
 		.top-space {
 		    margin-top: 85px;
 		}
@@ -210,16 +214,33 @@ p {
 		 width: 100%;
 	}
 	ul {
+		text-align: center;
+		padding: 0;
 		li {
 			list-style: none;
+			font-size: 35px;
+		}
+	}
+}
+
+#weapon {
+	&.store-category {
+		.row {
+			height: 52%;
+		}
+	}
+}
+
+#speed {
+	&.store-category {
+		.row {
+			height: 50%;
 		}
 	}
 }
 
 #code {
-	div {
+	p {
 		font-size: 150px;
-		padding: 10px;
-		border: 2px solid black;
 	}
 }
