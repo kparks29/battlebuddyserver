@@ -158,7 +158,14 @@
           <div class="description">{{ ctrl.items[ctrl.state][ctrl.currentItemIndex].description }} </div>
         </div>
         <div class="right">
-
+          <p><img src=""></p>
+          <p ng-if="!ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onBuyClicked()">BUY</a></p>
+          <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIPED</a></p>
+          <p>Stats
+            <!-- <ul>
+              <li></li>
+            </ul> -->
+          </p>
         </div>
       </div>
     </section>
@@ -176,7 +183,14 @@
           <div class="description">{{ ctrl.items[ctrl.state][ctrl.currentItemIndex].description }} </div>
         </div>
         <div class="right">
-
+          <p><img src=""></p>
+          <p ng-if="!ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onBuyClicked()">BUY</a></p>
+          <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIPED</a></p>
+          <p>Stats
+            <!-- <ul>
+              <li></li>
+            </ul> -->
+          </p>
         </div>
       </div>
     </section>

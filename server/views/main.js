@@ -51,7 +51,6 @@
 		}
 
 		function onEditLoadoutClicked (loadouts, index) {
-			self.state = 'summary';
 			self.currentItemIndex = 0;
 			self.currentLoadout = loadouts[index];
 			self.currentLoadoutIndex = index;
@@ -69,6 +68,11 @@
 				if (self.items.speed[i].id === self.currentLoadout.speed_item_id) {
 					self.speed = self.items.speed[i]
 				}
+			}
+			if (self.weapon && self.armor && self.speed) {
+				self.state = 'summary';
+			} else {
+				self.state = 'store';
 			}
 		}
 
