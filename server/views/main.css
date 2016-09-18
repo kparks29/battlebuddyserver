@@ -138,10 +138,10 @@ input {
   #store p a {
     padding: 20px 40px;
     border: 2px solid black;
-    border-radius: 15px;
     font-size: 50px; }
 
 #store .button.inactive {
+  color: #C49A6C;
   background-color: #C2B59B; }
 
 #code div {

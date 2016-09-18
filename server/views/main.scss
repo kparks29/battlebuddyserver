@@ -184,12 +184,12 @@ input {
 	    a {
 	    	padding: 20px 40px;
 	    	border: 2px solid black;
-	    	border-radius: 15px;
 	    	font-size: 50px;
 	    }
 	}
 	.button {
 		&.inactive {
+			color: $main-color;
 			background-color: $secondary-color;
 		}
 	}
