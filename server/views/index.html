@@ -11,7 +11,7 @@
 
     <section id="start" ng-if="ctrl.state === 'start'">
       <p class="logo">
-        <img src="" />
+        <img src="assets/robot_screenshot.png" />
       </p>
       <p>
         <label for="code">Enter Code:</label><br>
@@ -27,7 +27,7 @@
 
     <section id="welcome" ng-if="ctrl.state === 'welcome'">
       <p class="logo">
-        <img src="" />
+        <img src="assets/robot_screenshot.png" />
       </p>
       <p>
         WELCOME BACK,<br>
@@ -136,7 +136,7 @@
         <div class="right">
           <p><img src=""></p>
           <p ng-if="!ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onBuyClicked()">BUY</a></p>
-          <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIPED</a></p>
+          <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIP</a></p>
           <p>Stats
             <!-- <ul>
               <li></li>
@@ -160,7 +160,7 @@
         <div class="right">
           <p><img src=""></p>
           <p ng-if="!ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onBuyClicked()">BUY</a></p>
-          <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIPED</a></p>
+          <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIP</a></p>
           <p>Stats
             <!-- <ul>
               <li></li>
@@ -185,7 +185,7 @@
         <div class="right">
           <p><img src=""></p>
           <p ng-if="!ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onBuyClicked()">BUY</a></p>
-          <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIPED</a></p>
+          <p ng-if="ctrl.hasPurchased(ctrl.items[ctrl.state][ctrl.currentItemIndex].id)"><a class="button" ng-click="ctrl.onEquipClicked()">EQUIP</a></p>
           <p>Stats
             <!-- <ul>
               <li></li>

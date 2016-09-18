@@ -28,20 +28,6 @@
 				}, 2000);
 			}).catch(function (error) {
 				console.log(error)
-				// remove this and display error message
-				self.user = {
-					code: 123,
-					name: 'Ken',
-					coins: 1000,
-					loadouts: [
-						{name: 'Speedster'}
-					],
-					equiped_loadout_index: 0
-				}
-				self.state = 'welcome';
-				$timeout(function () {
-					self.state = 'dashboard'
-				}, 2000);
 			})
 		}
 		
@@ -86,17 +72,6 @@
 				self.state = 'code';
 			}).catch(function (error) {
 				console.log(error)
-				// remove this and display error message
-				self.user = {
-					code: 123,
-					name: 'Ken',
-					coins: 1000,
-					loadouts: [
-						{name: 'Speedster'}
-					],
-					equiped_loadout_index: 0
-				}
-				self.state = 'code';
 			})
 		}
 
@@ -154,19 +129,10 @@
 			self.newUser.type = type;
 			MainService.createUser(self.newUser).then(function (user) {
 				self.user = user;
-				self.state = 'weapon'
+				self.currentItemIndex = 0;
+				self.state = 'weapon';
 			}).catch(function (error) {
 				console.log(error)
-				self.user = {
-					code: 123,
-					name: 'Ken',
-					coins: 1000,
-					loadouts: [
-						{name: 'Speedster'}
-					],
-					equiped_loadout_index: 0
-				}
-				self.state = 'weapon'
 			})
 		}
 
