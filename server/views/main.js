@@ -233,7 +233,7 @@
 
 		function getItems (category) {
 			return $http.get(baseUrl + '/items?category=' + category).then(function (response) {
-				return response.data;
+				return response.data.items;
 			});
 		}
 

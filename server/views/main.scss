@@ -47,6 +47,11 @@ h1 {
 	color: $secondary-color;
 }
 
+.secondary {
+	background-color: $secondary-color;
+	color: $button-color;
+}
+
 .row {
 	display: flex;
 	width: 100%;

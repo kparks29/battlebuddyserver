@@ -135,7 +135,7 @@ app.get('/items', (req, res) => {
 	}
 
 	query(`SELECT * FROM items WHERE category=$1;`, [req.query.category]).then((results) => {
-		res.status(200).send(results)
+		res.status(200).send({ items: results })
 	}).catch((error) => {
 		res.status(400).send(error)
 	})

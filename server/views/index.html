@@ -89,16 +89,16 @@
       <h2>Battle Sets</h2>
       <div class="battlesets">
         <div class="row">
-          <div ng-click="ctrl.onBattleSetSelected(0)" class="battleset"><span>{{ ctrl.user.loadouts[0].name || 'Battle Set 1' }}</span></div>
-          <div ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 0)">Edit</div>
+          <div ng-click="ctrl.onBattleSetSelected(0)" class="battleset"><p><a class="button">{{ ctrl.user.loadouts[0].name || 'Battle Set 1' }}</a></p></div>
+          <div ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 0)"><p><a class="button secondary">Edit</a></p></div>
         </div>
         <div class="row">
-          <div ng-click="ctrl.onBattleSetSelected(1)" class="battleset"><span>{{ ctrl.user.loadouts[1].name || 'Battle Set 2' }}</span></div>
-          <div ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 1)">Edit</div>
+          <div ng-click="ctrl.onBattleSetSelected(1)" class="battleset"><p><a class="button">{{ ctrl.user.loadouts[1].name || 'Battle Set 2' }}</a></p></div>
+          <div ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 1)"><p><a class="button secondary">Edit</a></p></div>
         </div>
         <div class="row">
-          <div ng-click="ctrl.onBattleSetSelected(2)" class="battleset"><span>{{ ctrl.user.loadouts[2].name || 'Battle Set 3' }}</span></div>
-          <div ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 2)">Edit</div>
+          <div ng-click="ctrl.onBattleSetSelected(2)" class="battleset"><p><a class="button">{{ ctrl.user.loadouts[2].name || 'Battle Set 3' }}</a></p></div>
+          <div ng-click="ctrl.onEditLoadoutClicked(ctrl.user.loadouts, 2)"><p><a class="button secondary">Edit</a></p></div>
         </div>
       </div>
       <p>
