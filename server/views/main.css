@@ -68,10 +68,10 @@ p {
   text-align: center;
   min-height: 90px; }
 
-#start p:first-of-type {
+#start p.title {
   margin: 0; }
 
-#info p:first-of-type {
+#info p.title {
   margin: 0; }
 
 #welcome p:nth-child(2) {

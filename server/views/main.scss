@@ -87,7 +87,7 @@ p {
 
 #start {
 	p {
-		&:first-of-type {
+		&.title {
 			margin: 0;
 		}
 	}
@@ -97,7 +97,7 @@ p {
 
 #info {
 	p {
-		&:first-of-type {
+		&.title {
 			margin: 0;
 		}
 	}
