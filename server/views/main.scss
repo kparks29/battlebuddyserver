@@ -78,13 +78,12 @@ input {
 	text-align: center;
 }
 
+p {
+	text-align: center;
+}
+
 #start {
-	p {
-		text-align: center;
-		&:nth-child(2) {
-			margin: 30% 0 10%;
-		}
-	}
+	
 }
 
 
@@ -97,7 +96,6 @@ input {
 
 #welcome {
 	p {
-		text-align: center;
 		&:nth-child(2) {
 			margin: 30% 0 10%;
 			font-size: 68px;
@@ -131,7 +129,6 @@ input {
 	}
 	p {
 	    margin-top: 25%;
-	    text-align: center;
 	}
 }
 
@@ -147,7 +144,6 @@ input {
 	}
 	p {
 	    margin-top: 25%;
-	    text-align: center;
 	    a {
 	    	padding: 20px 40px;
 	    	border: 2px solid black;
