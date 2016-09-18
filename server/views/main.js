@@ -51,10 +51,25 @@
 		}
 
 		function onEditLoadoutClicked (loadouts, index) {
-			self.state = 'weapon';
+			self.state = 'summary';
 			self.currentItemIndex = 0;
 			self.currentLoadout = loadouts[index];
 			self.currentLoadoutIndex = index;
+			for (var i=0; i<self.items.weapon; i++) {
+				if (self.items.weapon[i].id === self.currentLoadout.weapon_item_id) {
+					self.weapon = self.items.weapon[i]
+				}
+			}
+			for (var i=0; i<self.items.armor; i++) {
+				if (self.items.armor[i].id === self.currentLoadout.armor_item_id) {
+					self.armor = self.items.armor[i]
+				}
+			}
+			for (var i=0; i<self.items.speed; i++) {
+				if (self.items.speed[i].id === self.currentLoadout.speed_item_id) {
+					self.speed = self.items.speed[i]
+				}
+			}
 		}
 
 		function onStoreClicked () {
@@ -152,6 +167,7 @@
 		}
 
 		function hasPurchased (itemId) {
+			console.log(itemId, self.purchasedItems)
 			for (var i=0; i<self.purchasedItems.length; i++) {
 				if (self.purchasedItems[i].id === itemId) {
 					return true;

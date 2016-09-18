@@ -98,19 +98,25 @@ app.post('/users/:id/purchase', (req, res) => {
 	}
 
 	query(`SELECT id, coins FROM users WHERE code=$1 LIMIT 1;`, [parseInt(req.params.id)]).then((results) => {
+		console.log('got user info')
 		let userId = results[0].id
 		coins = results[0].coins
 		return query(`INSERT INTO items_purchased (user_id, item_id) VALUES($1, $2);`, [userId, parseInt(req.query.item)])
 	}).then(() => {
+		console.log('added items purchased')
 		return query(`SELECT cost FROM items WHERE id=$1;`, [parseInt(req.query.item)])
 	}).then((results) => {
+		console.log('got cost')
 		return query(`UPDATE users SET coins=$1 WHERE id=$2;`, [userId, coins - results[0].cost])
 	}).then(() => {
+		console.log('updated users coins')
 		return query(`SELECT id, name, gender, coins, wins, loses, type, code, equiped_loadout_index FROM users WHERE id=$1 LIMIT 1;`, [userId])
 	}).then((results) => {
+		console.log('got user')
 		user = results[0]
 		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [userId])
 	}).then((results) => {
+		console.log('got loadouts ')
 		user.loadouts = results
 		delete user.id
 		res.status(200).send(user)
