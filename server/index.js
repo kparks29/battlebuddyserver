@@ -136,13 +136,12 @@ app.get('/users/:id/items', (req, res) => {
 		res.status(400).send('Missing Param Id')	
 	}
 
-	query(`SELECT DISTINCT i.id FROM items AS i
+	query(`SELECT DISTINCT * FROM items AS i
 		JOIN items_purchased AS ip
 		ON ip.item_id=i.id
 		JOIN users AS u
 		ON ip.user_id=u.id
 		WHERE u.code=$1;`, [parseInt(req.params.id)]).then((results) => {
-		console.log(results)
 		res.status(200).send(results)
 	}).catch((error) => {
 		res.status(400).send(error)
