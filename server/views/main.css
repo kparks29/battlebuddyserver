@@ -1,3 +1,7 @@
+@font-face {
+  font-family: Journey;
+  src: url("assets/JourneyPS3.ttf"); }
+
 html {
   width: 100%;
   height: 100%;
@@ -10,7 +14,8 @@ body {
   min-height: 100%;
   padding: 0;
   margin: 0;
-  background-color: #C49A6C; }
+  background-color: #C49A6C;
+  font-family: Journey; }
   body section {
     height: calc(100% - 40px);
     width: calc(100% - 40px);

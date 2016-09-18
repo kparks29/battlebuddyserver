@@ -2,6 +2,12 @@ $main-color: #C49A6C;
 $secondary-color: #C2B59B;
 $button-color: #754C29;
 
+@font-face {
+    font-family: Journey;
+    src: url('assets/JourneyPS3.ttf');
+}
+
+
 html {
 	width: 100%;
 	height: 100%;
@@ -16,6 +22,7 @@ body {
 	padding: 0;
 	margin: 0;
 	background-color: $main-color;
+	font-family: Journey;
 	section {
 		height: calc(100% - 40px);
 		width: calc(100% - 40px);
