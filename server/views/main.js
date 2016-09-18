@@ -183,9 +183,9 @@
 		function onBuyClicked () {
 			MainService.purchaseItem(self.user.code, self.items[self.state][self.currentItemIndex].id).then(function (user) {
 				self.user = user;
+				self[self.state] = self.items[self.state][self.currentItemIndex];
+				self.purchasedItems.push(self[self.state])
 				if (self.isNew) {
-					self[self.state] = self.items[self.state][self.currentItemIndex];
-					self.purchasedItems.push(self[self.state])
 					if (self.state === 'weapon') {
 						self.state = 'armor'
 					} else if (self.state === 'armor') {

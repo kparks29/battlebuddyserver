@@ -111,10 +111,8 @@ app.post('/users/:id/purchase', (req, res) => {
 		return query(`SELECT id, name, gender, coins, wins, loses, type, code, equiped_loadout_index FROM users WHERE id=$1 LIMIT 1;`, [userId])
 	}).then((results) => {
 		user = results[0]
-		console.log(user.id)
 		return query(`SELECT weapon_item_id, armor_item_id, speed_item_id, name FROM loadouts WHERE user_id=$1;`, [user.id])
 	}).then((results) => {
-		console.log('got loadouts ')
 		user.loadouts = results
 		delete user.id
 		res.status(200).send(user)
