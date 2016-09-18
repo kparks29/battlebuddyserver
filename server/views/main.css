@@ -9,7 +9,8 @@ body {
   height: 100%;
   min-height: 100%;
   padding: 0;
-  margin: 0; }
+  margin: 0;
+  background-color: #C49A6C; }
   body section {
     height: calc(100% - 40px);
     width: calc(100% - 40px);
@@ -25,10 +26,11 @@ h1 {
   font-size: 48px;
   line-height: 48px;
   padding: 20px 15%;
-  border: 2px solid lightgreen;
+  border: 2px solid #C2B59B;
   border-radius: 15px;
-  background-color: green;
-  color: white; }
+  background-color: #754C29;
+  box-shadow: 10px 10px 5px #888888;
+  color: #C2B59B; }
 
 .row {
   display: flex;
@@ -43,8 +45,7 @@ h1 {
   margin: 40px auto 20px; }
   .logo img {
     height: 100%;
-    width: 100%;
-    border: 4px solid black; }
+    width: 100%; }
 
 #start p {
   text-align: center; }
@@ -52,14 +53,29 @@ h1 {
     margin: 30% 0 10%; }
 
 #start label {
-  font-size: 48px; }
+  font-size: 50px; }
 
 #start input {
   width: 50%;
-  font-size: 48px;
-  line-height: 48px;
+  font-size: 50px;
+  line-height: 50px;
   padding: 10px;
-  border: 2px solid black;
+  background-color: #C49A6C;
+  border-bottom: 2px solid #C2B59B;
+  border-radius: 15px;
+  margin: 20px 0 50px;
+  text-align: center; }
+
+#info label {
+  font-size: 50px; }
+
+#info input {
+  width: 50%;
+  font-size: 50px;
+  line-height: 50px;
+  padding: 10px;
+  background-color: #C49A6C;
+  border-bottom: 2px solid #C2B59B;
   border-radius: 15px;
   margin: 20px 0 50px;
   text-align: center; }
@@ -111,7 +127,7 @@ h1 {
     font-size: 50px; }
 
 #store .button.inactive {
-  background-color: lightgray; }
+  background-color: #C2B59B; }
 
 #code div {
   font-size: 150px;
